@@ -5,10 +5,62 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ExhibitionOverlay } from '@/components/exhibition-overlay';
 import { ExhibitionScene } from '@/components/exhibition-scene';
+import { archiveEntries, type ArchiveEntryId } from '@/components/archive-content';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+
+const chapterOrder: ArchiveEntryId[] = ['about', 'work', 'archive'];
+const chapterHotspotIds = ['hotspot-identity', 'hotspot-imac', 'hotspot-camera'];
 
 export function ScrollExhibition() {
   const journeyRef = useRef<HTMLElement>(null);
+  const returnFocusRef = useRef<HTMLElement | null>(null);
   const [roomReady, setRoomReady] = useState(false);
+  const [activeEntry, setActiveEntry] = useState<ArchiveEntryId | null>(null);
+  const [visited, setVisited] = useState<ArchiveEntryId[]>([]);
+
+  const guidedIndex = chapterOrder.findIndex((entry) => !visited.includes(entry));
+  const freeExplore = guidedIndex === -1;
+
+  useEffect(() => {
+    const saved = window.localStorage.getItem('archive-guided-chapters');
+    if (!saved) return;
+    try {
+      const entries = JSON.parse(saved) as ArchiveEntryId[];
+      const frame = window.requestAnimationFrame(() => {
+        setVisited(entries.filter((entry) => chapterOrder.includes(entry)));
+      });
+      return () => window.cancelAnimationFrame(frame);
+    } catch {
+      window.localStorage.removeItem('archive-guided-chapters');
+    }
+  }, []);
+
+  const openEntry = (entry: ArchiveEntryId) => {
+    returnFocusRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    setActiveEntry(entry);
+  };
+
+  const handleDialogChange = (open: boolean) => {
+    if (open || !activeEntry) return;
+    let nextHotspotId: string | null = null;
+    if (chapterOrder.includes(activeEntry)) {
+      const chapterIndex = chapterOrder.indexOf(activeEntry);
+      nextHotspotId = chapterHotspotIds[chapterIndex + 1] ?? 'free-camera';
+      setVisited((current) => {
+        const next = current.includes(activeEntry) ? current : [...current, activeEntry];
+        window.localStorage.setItem('archive-guided-chapters', JSON.stringify(next));
+        return next;
+      });
+    }
+    setActiveEntry(null);
+    window.setTimeout(() => {
+      if (returnFocusRef.current?.isConnected) {
+        returnFocusRef.current.focus();
+        return;
+      }
+      if (nextHotspotId) document.getElementById(nextHotspotId)?.focus();
+    }, 0);
+  };
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -129,8 +181,26 @@ export function ScrollExhibition() {
     <main ref={journeyRef} className="archive-journey" aria-labelledby="archive-title">
       <div className="exhibition">
         <h1 id="archive-title" className="sr-only">Personal Archive Room</h1>
-        <ExhibitionScene roomReady={roomReady} />
-        <ExhibitionOverlay />
+        <ExhibitionScene
+          roomReady={roomReady}
+          guidedIndex={freeExplore ? 0 : guidedIndex}
+          freeExplore={freeExplore}
+          onOpen={openEntry}
+        />
+        <ExhibitionOverlay onNavigate={openEntry} />
+        <Dialog open={activeEntry !== null} onOpenChange={handleDialogChange}>
+          {activeEntry && (
+            <DialogContent className="archive-sheet sm:max-w-2xl">
+              <DialogHeader className="archive-sheet-header">
+                <p className="archive-sheet-index">{archiveEntries[activeEntry].eyebrow}</p>
+                <DialogTitle className="archive-sheet-title">{archiveEntries[activeEntry].title}</DialogTitle>
+                <DialogDescription className="archive-sheet-description">{archiveEntries[activeEntry].subtitle}</DialogDescription>
+              </DialogHeader>
+              <div className="archive-sheet-rule" />
+              {archiveEntries[activeEntry].content}
+            </DialogContent>
+          )}
+        </Dialog>
       </div>
     </main>
   );

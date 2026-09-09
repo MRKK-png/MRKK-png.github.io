@@ -1,141 +1,90 @@
-'use client';
-
 import type { CSSProperties } from 'react';
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog';
+import type { ArchiveEntryId } from '@/components/archive-content';
 
 type HotspotData = {
   id: string;
+  chapter?: number;
   label: string;
-  object: string;
-  descriptor: string;
-  categories: string[];
+  entry: ArchiveEntryId;
+  details: string[];
   x: number;
   y: number;
   align?: 'left' | 'right';
   hidden?: boolean;
 };
 
-const hotspots: HotspotData[] = [
+const guidedHotspots: HotspotData[] = [
   {
-    id: 'hotspot-camera',
-    label: 'FIELD NOTES',
-    object: 'Canon Powershot E1',
-    descriptor: 'Photography / observation',
-    categories: ['Photography', 'Travel observations', 'Visual research', 'Field notes'],
-    x: 11,
-    y: 68,
+    id: 'hotspot-identity', chapter: 1, label: 'WHO AM I', entry: 'about',
+    details: ['Identity', 'Education', 'Experience', 'Resume'], x: 20, y: 42,
   },
   {
-    id: 'hotspot-imac',
-    label: 'SELECTED WORKS',
-    object: 'Old iMac / computer',
-    descriptor: 'Projects / prototypes',
-    categories: ['Portfolio projects', 'Prototypes', 'AI product work', 'Case studies'],
-    x: 39,
-    y: 57,
+    id: 'hotspot-imac', chapter: 2, label: 'WHAT I CREATE', entry: 'work',
+    details: ['Internship', 'Product Projects', 'Research Projects'], x: 39, y: 57,
   },
   {
-    id: 'hotspot-archive',
-    label: 'ARCHIVE',
-    object: 'Shelves / folders',
-    descriptor: 'Experience / records',
-    categories: ['CV', 'Experience', 'Education', 'Awards', 'Skills'],
-    x: 70,
-    y: 43,
-    align: 'right',
-  },
-  {
-    id: 'hotspot-identity',
-    label: 'IDENTITY',
-    object: 'Garment area',
-    descriptor: 'About / perspective',
-    categories: ['About', 'Interests', 'Design perspective', 'Personal statement'],
-    x: 19,
-    y: 45,
-  },
-  {
-    id: 'hotspot-journey',
-    label: 'JOURNEY',
-    object: 'Archive collage',
-    descriptor: 'Timeline / trajectory',
-    categories: ['Timeline', 'Architecture to interaction', 'Research trajectory'],
-    x: 48,
-    y: 35,
-  },
-  {
-    id: 'hotspot-extra',
-    label: 'EXTRA',
-    object: 'Small archive object',
-    descriptor: 'Experiments / references',
-    categories: ['Reading', 'Music', 'Bookmarks', 'Experiments'],
-    x: 82,
-    y: 71,
-    align: 'right',
-    hidden: true,
+    id: 'hotspot-camera', chapter: 3, label: 'WHAT INSPIRES ME', entry: 'archive',
+    details: ['Photography', 'Field Notes', 'Architecture', 'Research'], x: 12, y: 69,
   },
 ];
 
-function ArchiveHotspot({ item, active }: { item: HotspotData; active: boolean }) {
+const freeExploreHotspots: HotspotData[] = [
+  { id: 'free-camera', label: 'CAMERA', entry: 'archive', details: ['Canon Powershot E1', 'Photography / observation'], x: 12, y: 69 },
+  { id: 'free-computer', label: 'COMPUTER', entry: 'work', details: ['Projects', 'Prototypes / AI products'], x: 39, y: 57 },
+  { id: 'free-books', label: 'BOOKS', entry: 'archive', details: ['Research', 'References / field notes'], x: 70, y: 43, align: 'right' },
+  {
+    id: 'free-clothes', label: 'CLOTHES', entry: 'about', details: ['Identity', 'Personal perspective'], x: 20, y: 42,
+  },
+  { id: 'free-documents', label: 'DOCUMENTS', entry: 'about', details: ['Education', 'Experience / resume'], x: 83, y: 70, align: 'right' },
+  { id: 'free-photographs', label: 'PHOTOGRAPHS', entry: 'archive', details: ['Visual archive', 'Memory / places'], x: 49, y: 36 },
+];
+
+function ArchiveHotspot({ item, onOpen }: { item: HotspotData; onOpen: (entry: ArchiveEntryId) => void }) {
   const position = {
     '--hotspot-x': `${item.x}%`,
     '--hotspot-y': `${item.y}%`,
   } as CSSProperties;
 
   return (
-    <Dialog>
-      <DialogTrigger
-        render={
-          <button
-            id={item.id}
-            type="button"
-            className={`archive-hotspot${item.align === 'right' ? ' archive-hotspot-right' : ''}${item.hidden ? ' archive-hotspot-hidden' : ''}`}
-            style={position}
-            disabled={!active}
-            tabIndex={active ? 0 : -1}
-            aria-label={`${item.label}: ${item.object}`}
-          />
-        }
-      >
+    <button
+      id={item.id}
+      type="button"
+      className={`archive-hotspot${item.align === 'right' ? ' archive-hotspot-right' : ''}`}
+      style={position}
+      onClick={() => onOpen(item.entry)}
+      aria-label={`${item.chapter ? `Chapter ${item.chapter}: ` : ''}${item.label}`}
+    >
         <span className="hotspot-marker" aria-hidden="true"><span /></span>
         <span className="hotspot-label" aria-hidden="true">
-          <strong>{item.label}</strong>
-          <span>{item.object}</span>
-          <small>{item.descriptor}</small>
+          <span className="hotspot-label-heading">
+            {item.chapter && <em>{String(item.chapter).padStart(2, '0')}</em>}
+            <strong>{item.label}</strong>
+          </span>
+          <span className="hotspot-label-details">
+            {item.details.map((detail) => <small key={detail}>{detail}</small>)}
+          </span>
         </span>
-      </DialogTrigger>
-
-      <DialogContent className="archive-sheet sm:max-w-lg">
-        <DialogHeader className="archive-sheet-header">
-          <p className="archive-sheet-index">ARCHIVE ENTRY / STRUCTURE RESERVED</p>
-          <DialogTitle className="archive-sheet-title">{item.label}</DialogTitle>
-          <DialogDescription className="archive-sheet-description">
-            {item.object}<br />{item.descriptor}
-          </DialogDescription>
-        </DialogHeader>
-        <div className="archive-sheet-rule" />
-        <p className="archive-sheet-status">CONTENT IN PREPARATION</p>
-        <ul className="archive-sheet-list">
-          {item.categories.map((category) => <li key={category}>{category}</li>)}
-        </ul>
-        <p className="archive-sheet-note">
-          This entry is a provisional navigation structure. Final material and wording will replace this placeholder.
-        </p>
-      </DialogContent>
-    </Dialog>
+    </button>
   );
 }
 
-export function ArchiveHotspots({ active }: { active: boolean }) {
+export function ArchiveHotspots({
+  active,
+  guidedIndex,
+  freeExplore,
+  onOpen,
+}: {
+  active: boolean;
+  guidedIndex: number;
+  freeExplore: boolean;
+  onOpen: (entry: ArchiveEntryId) => void;
+}) {
+  const visibleHotspots = freeExplore ? freeExploreHotspots : [guidedHotspots[guidedIndex]];
+
   return (
     <div className={`archive-hotspots${active ? ' archive-hotspots-active' : ''}`} aria-hidden={!active}>
-      {hotspots.map((item) => <ArchiveHotspot key={item.id} item={item} active={active} />)}
+      {visibleHotspots.map((item) => <ArchiveHotspot key={item.id} item={item} onOpen={onOpen} />)}
+      {freeExplore && <output className="free-explore-status">FREE EXPLORE MODE</output>}
     </div>
   );
 }
