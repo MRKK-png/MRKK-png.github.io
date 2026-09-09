@@ -31,6 +31,35 @@ body { color: var(--foreground); font-family: var(--font-mono); -webkit-font-smo
 .reflection-depth { clip-path: inset(69% 0 0); transform-origin: 50% 69%; opacity: 0; mix-blend-mode: screen; }
 .near-room { position: absolute; inset: -1px; opacity: 0; transform-origin: 50% 49%; will-change: transform, opacity, filter; }
 .near-room-plate { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
+.archive-hotspots { position: absolute; inset: 0; z-index: 4; opacity: 0; pointer-events: none; transition: opacity 420ms ease; }
+.archive-hotspots-active { opacity: 1; pointer-events: auto; }
+.archive-hotspot { position: absolute; left: var(--hotspot-x); top: var(--hotspot-y); width: 64px; height: 64px; padding: 0; transform: translate(-50%, -50%); border: 0; border-radius: 0; background: transparent; color: #151116; cursor: pointer; }
+.archive-hotspot:disabled { cursor: default; }
+.hotspot-marker { position: absolute; left: 29px; top: 29px; width: 7px; height: 7px; border: 1px solid rgb(22 17 22 / 82%); background: rgb(245 238 241 / 76%); transform: rotate(45deg); box-shadow: 0 0 0 3px rgb(255 255 255 / 24%); transition: transform 180ms ease, background-color 180ms ease; }
+.hotspot-marker::after { content: ''; position: absolute; width: 34px; height: 1px; left: 8px; top: 2px; background: rgb(22 17 22 / 64%); transform: rotate(-45deg); transform-origin: left center; }
+.hotspot-label { position: absolute; left: 68px; top: 7px; width: max-content; min-width: 150px; padding: 8px 10px 9px; text-align: left; color: #171217; background: rgb(244 239 240 / 92%); border-left: 2px solid #ff2e91; box-shadow: 0 7px 22px rgb(8 4 7 / 18%); opacity: 0; transform: translateX(-5px); transition: opacity 160ms ease, transform 160ms ease; }
+.archive-hotspot-right .hotspot-label { left: auto; right: 68px; text-align: right; border-left: 0; border-right: 2px solid #ff2e91; }
+.hotspot-label strong, .hotspot-label span, .hotspot-label small { display: block; }
+.hotspot-label strong { font: 600 13px/1.2 var(--font-mono); letter-spacing: .04em; }
+.hotspot-label span { margin-top: 5px; font: 500 12px/1.3 var(--font-mono); }
+.hotspot-label small { margin-top: 2px; color: #665d62; font: 400 12px/1.35 var(--font-mono); }
+.archive-hotspot:hover .hotspot-label, .archive-hotspot:focus-visible .hotspot-label { opacity: 1; transform: translateX(0); }
+.archive-hotspot:hover .hotspot-marker, .archive-hotspot:focus-visible .hotspot-marker { transform: rotate(45deg) scale(1.3); background: #ff2e91; }
+.archive-hotspot:focus-visible { outline: 1px solid #171217; outline-offset: -5px; }
+.archive-hotspot-hidden { opacity: .38; }
+.archive-hotspot-hidden:hover, .archive-hotspot-hidden:focus-visible { opacity: 1; }
+.archive-sheet { width: min(520px, calc(100vw - 32px)); max-width: 520px; padding: 28px; gap: 18px; border-radius: 0; color: #181317; background: rgb(246 243 242 / 97%); border: 1px solid rgb(23 16 21 / 24%); box-shadow: 20px 24px 0 rgb(238 39 133 / 28%), 0 26px 80px rgb(0 0 0 / 48%); font-family: var(--font-mono); }
+.archive-sheet-header { gap: 8px; }
+.archive-sheet-index, .archive-sheet-status, .archive-sheet-note { margin: 0; }
+.archive-sheet-index { color: #71676c; font-size: 12px; letter-spacing: .06em; }
+.archive-sheet-title { font: 500 clamp(30px, 5vw, 48px)/.98 var(--font-mono); letter-spacing: -.07em; }
+.archive-sheet-description { color: #4a4246; font: 400 13px/1.45 var(--font-mono); }
+.archive-sheet-rule { height: 1px; background: #272126; }
+.archive-sheet-status { color: #de1f78; font-size: 12px; letter-spacing: .05em; }
+.archive-sheet-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin: 0; padding: 0; list-style: none; border-top: 1px solid rgb(24 18 22 / 20%); }
+.archive-sheet-list li { padding: 9px 4px; border-bottom: 1px solid rgb(24 18 22 / 20%); font-size: 12px; }
+.archive-sheet-note { max-width: 46ch; color: #625a5e; font-size: 12px; line-height: 1.55; }
+[data-slot='dialog-overlay'] { background: rgb(7 4 7 / 46%); backdrop-filter: blur(7px); }
 .glass-surface { position: absolute; inset: 0; opacity: 0; pointer-events: none; background: linear-gradient(105deg, transparent 15%, rgb(255 255 255 / 30%) 35%, transparent 47%, rgb(255 184 224 / 16%) 69%, transparent 80%); mix-blend-mode: screen; }
 .threshold-flash { position: absolute; inset: 0; opacity: 0; pointer-events: none; background: linear-gradient(to bottom, transparent 45%, rgb(245 235 241 / 72%) 49.4%, rgb(255 39 144 / 52%) 50%, transparent 52%); mix-blend-mode: screen; }
 .approach-shade { position: absolute; inset: 0; opacity: 0; pointer-events: none; background: radial-gradient(circle at 50% 47%, transparent 30%, rgb(2 0 3 / 58%) 100%); }
@@ -68,6 +97,8 @@ body { color: var(--foreground); font-family: var(--font-mono); -webkit-font-smo
   .inventory { grid-column: 2; grid-row: 1; }
   .wall-caption { display: none; }
   .exhibition-footer { padding-bottom: 24px; }
+  .archive-hotspot { width: 72px; height: 72px; }
+  .hotspot-label { min-width: 132px; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; }

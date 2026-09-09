@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ExhibitionOverlay } from '@/components/exhibition-overlay';
@@ -8,6 +8,7 @@ import { ExhibitionScene } from '@/components/exhibition-scene';
 
 export function ScrollExhibition() {
   const journeyRef = useRef<HTMLElement>(null);
+  const [roomReady, setRoomReady] = useState(false);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -19,6 +20,7 @@ export function ScrollExhibition() {
     const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
 
     const context = gsap.context(() => {
+      let wasReady = false;
       const timeline = gsap.timeline({
         scrollTrigger: {
           trigger: journey,
@@ -26,6 +28,13 @@ export function ScrollExhibition() {
           end: 'bottom bottom',
           scrub: reduceMotion.matches ? 0 : 1.15,
           invalidateOnRefresh: true,
+          onUpdate: ({ progress }) => {
+            const ready = progress >= 0.78;
+            if (ready !== wasReady) {
+              wasReady = ready;
+              setRoomReady(ready);
+            }
+          },
         },
         defaults: { ease: 'none' },
       });
@@ -120,7 +129,7 @@ export function ScrollExhibition() {
     <main ref={journeyRef} className="archive-journey" aria-labelledby="archive-title">
       <div className="exhibition">
         <h1 id="archive-title" className="sr-only">Personal Archive Room</h1>
-        <ExhibitionScene />
+        <ExhibitionScene roomReady={roomReady} />
         <ExhibitionOverlay />
       </div>
     </main>

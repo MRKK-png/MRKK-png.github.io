@@ -1,6 +1,8 @@
 /* oxlint-disable next/no-img-element -- This precompressed photographic plate is served directly; avoid runtime image processing. */
+import { ArchiveHotspots } from '@/components/archive-hotspots';
+
 /** Exterior plate and user-approved near-room plate for the threshold sequence. */
-export function ExhibitionScene() {
+export function ExhibitionScene({ roomReady }: { roomReady: boolean }) {
   return (
     <div className="scene-stage">
       <div className="scene-camera">
@@ -16,8 +18,9 @@ export function ExhibitionScene() {
           <img className="scene-plate" src="/images/exhibition.jpg" width={1672} height={941} alt="" />
         </div>
       </div>
-      <div className="near-room" aria-hidden="true">
+      <div className="near-room">
         <img className="near-room-plate" src="/images/archive-room-close.jpg" width={1601} height={983} alt="" />
+        <ArchiveHotspots active={roomReady} />
       </div>
       <div className="glass-surface" aria-hidden="true" />
       <div className="threshold-flash" aria-hidden="true" />

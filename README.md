@@ -1,4 +1,4 @@
-# Personal Archive Room — Phase 3
+# Personal Archive Room — Phase 4
 
 Scroll-led exhibition homepage. Run `npm install` and `npm run dev` in this directory.
 
@@ -14,7 +14,9 @@ Built with the Sites scaffold (Vinext's Next.js App Router API, React, TypeScrip
 - Fine pointers add 4–8 px of ambient parallax. Touch devices and reduced-motion settings suppress it.
 - From 55–75%, the exterior dissolves through a restrained glass highlight, focus shift and short sync line into the approved near-room plate.
 - From 75–100%, the archive room settles into a quieter, dominant composition with low-amplitude pointer movement.
-- No object hotspots or content panels yet.
+- Six data-driven hotspots activate only after the archive room settles. Hover and keyboard focus reveal compact exhibit labels.
+- Selecting a hotspot opens one consistent archive-sheet dialog, using provisional categories from the approved information architecture.
+- Dialog focus is contained and returns to the selected object when closed.
 - Scene depth is simulated from masked copies of one photographic plate. True separated assets remain a later fidelity upgrade.
 
 ## Assets
