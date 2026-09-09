@@ -23,7 +23,7 @@ export function ExhibitionOverlay() {
       <p className="wall-caption wall-caption-right">ARCHIVE<br />AS<br />A WAY<br />OF<br />IMAGINING<br />TOMORROW</p>
       <footer className="exhibition-footer">
         <p id="content-status" className="archive-status">PERSONAL ARCHIVE<br /><span>INDEX IN PREPARATION</span></p>
-        <p className="scroll-cue" aria-label="Scroll to explore — available in the next phase">
+        <p className="scroll-cue" aria-label="Scroll to approach the archive">
           SCROLL<br />TO<br />EXPLORE
           <svg viewBox="0 0 16 22" width="16" height="22" fill="none" aria-hidden="true"><path d="M8 1v18M2 13l6 6 6-6" stroke="currentColor" strokeWidth="1" /></svg>
         </p>
