@@ -1,5 +1,6 @@
 /* oxlint-disable next/no-img-element -- This precompressed photographic plate is served directly; avoid runtime image processing. */
 import { ArchiveHotspots } from '@/components/archive-hotspots';
+import { NameProjection } from '@/components/name-projection';
 import type { ArchiveTargetId } from '@/components/archive-content';
 
 /** Exterior plate and user-approved near-room plate for the threshold sequence. */
@@ -23,6 +24,7 @@ export function ExhibitionScene({ roomReady, guidedIndex, freeExplore, onOpen }:
         <div className="reflection-depth" aria-hidden="true">
           <img className="scene-plate" src="/images/exhibition.jpg" width={1672} height={941} alt="" />
         </div>
+        <NameProjection />
       </div>
       <div className="near-room">
         <img className="near-room-plate" src="/images/archive-room-close.jpg" width={1601} height={983} alt="" />

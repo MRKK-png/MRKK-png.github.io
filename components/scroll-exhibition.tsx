@@ -123,6 +123,12 @@ export function ScrollExhibition() {
           opacity: reduceMotion.matches ? 0.42 : 0.72,
           duration: 0.35,
         }, 0.2)
+        // The projection inherits the scene-camera zoom and floor displacement.
+        // Only the plane angle changes locally as the viewpoint approaches it.
+        .to('.name-projection', {
+          '--projection-angle': reduceMotion.matches ? '18deg' : '6deg',
+          duration: 0.55,
+        }, 0.2)
         .to('.identity, .inventory, .archive-status, .scroll-cue', {
           opacity: 0.28,
           duration: 0.16,
