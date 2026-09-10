@@ -2,11 +2,12 @@
 
 import { Button } from '@/components/ui/button';
 import type { ArchiveEntryId } from '@/components/archive-content';
+import { NameProjection } from '@/components/name-projection';
 
 const navigation: Array<{ label: string; entry: ArchiveEntryId }> = [
-  { label: 'ARCHIVE', entry: 'archive' },
-  { label: 'WORK', entry: 'work' },
   { label: 'ABOUT', entry: 'about' },
+  { label: 'WORK', entry: 'work' },
+  { label: 'ARCHIVE', entry: 'archive' },
   { label: 'CONTACT', entry: 'contact' },
 ];
 
@@ -25,8 +26,7 @@ export function ExhibitionOverlay({ onNavigate }: { onNavigate: (entry: ArchiveE
         </nav>
         <p className="inventory">MEMORY<br />MATERIAL<br />IDEAS<br />PEOPLE<br />PLACES</p>
       </header>
-      <p className="wall-caption wall-caption-left">PAST<br />DATA<br />PRESENT<br />POSSIBILITIES<br />FUTURE<br />HUMANS</p>
-      <p className="wall-caption wall-caption-right">ARCHIVE<br />AS<br />A WAY<br />OF<br />IMAGINING<br />TOMORROW</p>
+      <NameProjection />
       <footer className="exhibition-footer">
         <p id="content-status" className="archive-status">PERSONAL ARCHIVE<br /><span>SHAO YUCHENG / 肖裕诚</span></p>
         <p className="scroll-cue" aria-label="Scroll to approach the archive">

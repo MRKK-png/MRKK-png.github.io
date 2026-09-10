@@ -123,8 +123,6 @@ export function ScrollExhibition() {
           opacity: reduceMotion.matches ? 0.42 : 0.72,
           duration: 0.35,
         }, 0.2)
-        .to('.wall-caption-left', { x: -22, opacity: 0.18, duration: 0.2 }, 0.35)
-        .to('.wall-caption-right', { x: 22, opacity: 0.18, duration: 0.2 }, 0.35)
         .to('.identity, .inventory, .archive-status, .scroll-cue', {
           opacity: 0.28,
           duration: 0.16,
@@ -150,7 +148,7 @@ export function ScrollExhibition() {
         .to('.glass-surface', { opacity: 0.035, duration: 0.13 }, 0.62)
         .to('.threshold-flash', { opacity: reduceMotion.matches ? 0 : 0.2, duration: 0.018 }, 0.625)
         .to('.threshold-flash', { opacity: 0, duration: 0.025 }, 0.643)
-        .to('.wall-caption, .identity, .inventory, .archive-status, .scroll-cue', {
+        .to('.identity, .inventory, .archive-status, .scroll-cue, .name-projection', {
           opacity: 0,
           duration: 0.16,
         }, 0.56)
