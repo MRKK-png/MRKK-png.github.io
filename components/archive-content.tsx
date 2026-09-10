@@ -28,7 +28,7 @@ export const archiveEntries: Record<ArchiveEntryId, ArchiveEntry> = {
     content: (
       <div className="archive-entry-content">
         <Fact label="Identity">
-          <p className="archive-person-name">肖裕诚 / Shao Yucheng</p>
+          <p className="archive-person-name">肖裕诚 / XIAO YUCHENG</p>
           <p>Designer · Researcher · Photographer</p>
         </Fact>
         <Fact label="Education">
@@ -110,7 +110,7 @@ export const archiveEntries: Record<ArchiveEntryId, ArchiveEntry> = {
     subtitle: '保持联系 / Stay in touch',
     content: (
       <div className="archive-entry-content contact-card">
-        <p className="archive-person-name">肖裕诚 / Shao Yucheng</p>
+        <p className="archive-person-name">肖裕诚 / XIAO YUCHENG</p>
         <p>Designer<br />Researcher<br />Photographer</p>
         <Fact label="Email"><a href="mailto:2533310@tongji.edu.cn">2533310@tongji.edu.cn</a></Fact>
         <Fact label="Wechat"><p>KevX111</p></Fact>

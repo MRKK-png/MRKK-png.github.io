@@ -101,16 +101,8 @@ body { color: var(--foreground); font-family: var(--font-mono); -webkit-font-smo
 .nav-note { position: absolute; left: 50%; top: 44px; transform: translateX(-50%); white-space: nowrap; font-size: 12px; color: var(--caption); opacity: 0; }
 .nav-entry:hover .nav-note, .nav-entry:focus-within .nav-note { opacity: 1; }
 .name-projection { position: absolute; z-index: 2; left: 50%; bottom: clamp(26px, 3.2vh, 48px); width: min(69vw, 1040px); height: clamp(82px, 13vw, 170px); transform: translateX(-50%) perspective(600px) rotateX(18deg); transform-origin: center bottom; pointer-events: none; opacity: .88; mix-blend-mode: screen; }
-.name-projection svg { display: block; width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 0 5px rgb(255 226 244 / 22%)) drop-shadow(0 5px 12px rgb(59 153 255 / 12%)); }
-.name-projection text { fill: none; font-family: 'Edu AU VIC WA NT Dots', 'Bradley Hand', 'Comic Sans MS', cursive; font-size: 118px; font-weight: 400; letter-spacing: 7px; transform: rotate(-1.5deg); transform-origin: center; }
-.projection-glow { stroke: rgb(255 228 242 / 14%); stroke-width: 7px; stroke-dasharray: .1 8.5; stroke-linecap: round; filter: blur(3px); }
-.projection-dots { stroke: #fff5fa; stroke-width: 4px; stroke-linecap: round; }
-.projection-dots-a { stroke-dasharray: .1 24; animation: projection-breathe-a 8.7s steps(1, end) infinite; }
-.projection-dots-b { stroke: #e8f4ff; stroke-dasharray: .1 24; stroke-dashoffset: 8; animation: projection-breathe-b 11.3s steps(1, end) -3.8s infinite; }
-.projection-dots-c { stroke: #ffd5ea; stroke-dasharray: .1 24; stroke-dashoffset: 16; animation: projection-breathe-c 13.1s steps(1, end) -7.2s infinite; }
-@keyframes projection-breathe-a { 0%, 100% { opacity: .82; transform: translateY(0); } 17% { opacity: .48; } 41% { opacity: .72; transform: translateY(-.4px); } 68% { opacity: .36; } 83% { opacity: .66; transform: translateY(.3px); } }
-@keyframes projection-breathe-b { 0%, 100% { opacity: .4; } 11% { opacity: .75; transform: translateX(.4px); } 36% { opacity: .3; } 59% { opacity: .62; } 79% { opacity: .46; transform: translateX(-.3px); } }
-@keyframes projection-breathe-c { 0%, 100% { opacity: .58; } 23% { opacity: .28; transform: translateY(.3px); } 47% { opacity: .7; } 71% { opacity: .34; } 91% { opacity: .64; transform: translateY(-.4px); } }
+.name-projection img { display: block; width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 0 5px rgb(255 226 244 / 22%)) drop-shadow(0 5px 12px rgb(59 153 255 / 12%)); animation: projection-breathe 10.7s ease-in-out infinite; }
+@keyframes projection-breathe { 0%, 100% { opacity: .72; transform: translateY(0); } 21% { opacity: .88; } 49% { opacity: .64; transform: translateY(-.5px); } 76% { opacity: .81; transform: translateY(.35px); } }
 .exhibition-footer { position: absolute; inset: auto 0 0; padding: 0 var(--edge) 30px; display: flex; align-items: end; justify-content: space-between; }
 .archive-status, .scroll-cue { margin: 0; font-size: 12px; font-weight: 400; line-height: 1.4; }
 .archive-status span { color: #b5a9b0; }
@@ -203,5 +195,5 @@ body { color: var(--foreground); font-family: var(--font-mono); -webkit-font-smo
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; }
   .archive-journey { height: 210svh; }
-  .projection-dots { animation: none !important; }
+  .name-projection img { animation: none !important; }
 }

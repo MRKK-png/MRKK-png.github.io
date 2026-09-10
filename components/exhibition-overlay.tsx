@@ -28,7 +28,7 @@ export function ExhibitionOverlay({ onNavigate }: { onNavigate: (entry: ArchiveE
       </header>
       <NameProjection />
       <footer className="exhibition-footer">
-        <p id="content-status" className="archive-status">PERSONAL ARCHIVE<br /><span>SHAO YUCHENG / 肖裕诚</span></p>
+        <p id="content-status" className="archive-status">PERSONAL ARCHIVE<br /><span>XIAO YUCHENG / 肖裕诚</span></p>
         <p className="scroll-cue" aria-label="Scroll to approach the archive">
           SCROLL<br />TO<br />EXPLORE
           <svg viewBox="0 0 16 22" width="16" height="22" fill="none" aria-hidden="true"><path d="M8 1v18M2 13l6 6 6-6" stroke="currentColor" strokeWidth="1" /></svg>

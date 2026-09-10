@@ -31,12 +31,12 @@ const guidedHotspots: HotspotData[] = [
 const freeExploreHotspots: HotspotData[] = [
   { id: 'free-camera', label: 'CAMERA', entry: 'archive', details: ['Canon Powershot E1', 'Photography / observation'], x: 12, y: 69 },
   { id: 'free-computer', label: 'COMPUTER', entry: 'work', details: ['Projects', 'Prototypes / AI products'], x: 39, y: 57 },
-  { id: 'free-books', label: 'BOOKS', entry: 'archive', details: ['Research', 'References / field notes'], x: 70, y: 43, align: 'right' },
+  { id: 'free-books', label: 'BOOKS', entry: 'archive', details: ['Research', 'References / field notes'], x: 70, y: 47, align: 'right' },
   {
     id: 'free-clothes', label: 'CLOTHES', entry: 'second-nice', details: ['Identity', 'Social Design', '2nd NICE'], x: 20, y: 42,
   },
   { id: 'free-documents', label: 'DOCUMENTS', entry: 'about', details: ['Education', 'Experience / resume'], x: 83, y: 70, align: 'right' },
-  { id: 'free-photographs', label: 'PHOTOGRAPHS', entry: 'archive', details: ['Visual archive', 'Memory / places'], x: 49, y: 36 },
+  { id: 'free-photographs', label: 'PHOTOGRAPHS', entry: 'archive', details: ['Visual archive', 'Memory / places'], x: 49, y: 31 },
 ];
 
 function ArchiveHotspot({ item, onOpen }: { item: HotspotData; onOpen: (entry: ArchiveTargetId) => void }) {
