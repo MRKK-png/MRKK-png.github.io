@@ -101,18 +101,13 @@ body { color: var(--foreground); font-family: var(--font-mono); -webkit-font-smo
 .nav-note { position: absolute; left: 50%; top: 44px; transform: translateX(-50%); white-space: nowrap; font-size: 12px; color: var(--caption); opacity: 0; }
 .nav-entry:hover .nav-note, .nav-entry:focus-within .nav-note { opacity: 1; }
 .runway-spotlights { position: absolute; z-index: 1; inset: 0; overflow: hidden; pointer-events: none; mix-blend-mode: screen; opacity: 0; animation: runway-opening 2.8s ease-out .25s forwards; }
-.spotlight-beam { position: absolute; bottom: 9%; height: min(78vh, 820px); transform: translateX(-50%); transform-origin: 50% 100%; background: linear-gradient(to top, rgb(255 250 243 / 96%) 0%, rgb(255 247 239 / 42%) 42%, rgb(255 255 255 / 10%) 82%, transparent 100%); clip-path: polygon(45% 0, 55% 0, 72% 100%, 28% 100%); filter: blur(16px); opacity: .18; animation: spotlight-breathe var(--beam-duration) ease-in-out var(--beam-delay) infinite; }
-.spotlight-beam::before { content: ''; position: absolute; inset: 0 45%; background: linear-gradient(to top, rgb(255 250 244 / 90%), rgb(255 252 247 / 28%) 58%, transparent 100%); filter: blur(5px); opacity: .76; }
-.spotlight-beam::after { content: ''; position: absolute; left: 50%; bottom: -4px; width: 34%; height: 9px; transform: translateX(-50%); border-radius: 50%; background: rgb(255 248 239 / 80%); box-shadow: 0 0 18px 5px rgb(255 241 229 / 36%); filter: blur(2px); }
+.spotlight-beam { position: absolute; bottom: 8%; height: min(82vh, var(--beam-height)); transform: translateX(-50%) rotate(var(--beam-angle)); transform-origin: 50% 100%; clip-path: polygon(3% 0, 97% 0, 53% 100%, 47% 100%); mask-image: linear-gradient(to top, #000 0%, rgb(0 0 0 / 76%) 27%, rgb(0 0 0 / 28%) 64%, transparent 100%); filter: blur(var(--beam-blur)); opacity: var(--beam-low); animation: spotlight-current var(--beam-duration) ease-in-out var(--beam-delay) infinite; }
+.spotlight-beam::before { content: ''; position: absolute; inset: -3% -8%; background: radial-gradient(ellipse at 50% 100%, rgb(255 250 242 / 92%) 0 2%, rgb(255 247 238 / 38%) 18%, rgb(255 252 247 / 12%) 55%, transparent 82%); }
+.spotlight-beam::after { content: ''; position: absolute; left: 50%; bottom: 0; width: 10px; height: 5px; transform: translate(-50%, 45%); border-radius: 50%; background: #fffaf4; box-shadow: 0 0 11px 4px rgb(255 241 226 / 46%), 0 0 28px 9px rgb(255 231 211 / 16%); filter: blur(1px); }
 @keyframes runway-opening { from { opacity: 0; } to { opacity: 1; } }
-@keyframes spotlight-breathe { 0%, 100% { opacity: .14; transform: translateX(calc(-50% - var(--beam-drift))) scaleX(.94); } 48% { opacity: .42; transform: translateX(calc(-50% + var(--beam-drift))) scaleX(1.04); } 73% { opacity: .22; } }
+@keyframes spotlight-current { 0%, 100% { opacity: var(--beam-low); } 17% { opacity: var(--beam-mid); } 39% { opacity: var(--beam-low); } 46% { opacity: var(--beam-high); } 71% { opacity: var(--beam-mid); } 83% { opacity: var(--beam-high); } }
 .name-projection { position: absolute; z-index: 2; left: 50%; bottom: clamp(26px, 3.2vh, 48px); width: min(69vw, 1040px); height: clamp(82px, 13vw, 170px); transform: translateX(-50%) perspective(600px) rotateX(var(--projection-angle, 18deg)); transform-origin: center bottom; pointer-events: none; opacity: .88; mix-blend-mode: screen; }
 .name-projection img { display: block; width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 0 5px rgb(255 226 244 / 22%)) drop-shadow(0 5px 12px rgb(59 153 255 / 12%)); animation: projection-breathe 10.7s ease-in-out infinite; }
-.projection-glints { position: absolute; inset: 0; pointer-events: none; }
-.projection-glint { position: absolute; width: 3px; height: 3px; border-radius: 50%; background: #fff8fc; box-shadow: 0 0 5px 1px #fff1fa, 0 0 13px 3px rgb(255 204 235 / 35%); opacity: 0; animation: floor-glint var(--glint-duration) ease-in-out var(--glint-delay) infinite; }
-.projection-glint::before, .projection-glint::after { content: ''; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); background: linear-gradient(90deg, transparent, rgb(255 245 251 / 85%), transparent); width: 19px; height: 1px; }
-.projection-glint::after { width: 1px; height: 11px; background: linear-gradient(transparent, rgb(255 245 251 / 75%), transparent); }
-@keyframes floor-glint { 0%, 62%, 82%, 100% { opacity: 0; } 70% { opacity: .72; } 75% { opacity: .19; } }
 @keyframes projection-breathe { 0%, 100% { opacity: .72; transform: translateY(0); } 21% { opacity: .88; } 49% { opacity: .64; transform: translateY(-.5px); } 76% { opacity: .81; transform: translateY(.35px); } }
 .exhibition-footer { position: absolute; inset: auto 0 0; padding: 0 var(--edge) 30px; display: flex; align-items: end; justify-content: space-between; }
 .archive-status, .scroll-cue { margin: 0; font-size: 12px; font-weight: 400; line-height: 1.4; }
@@ -208,5 +203,4 @@ body { color: var(--foreground); font-family: var(--font-mono); -webkit-font-smo
   .archive-journey { height: 210svh; }
   .name-projection img { animation: none !important; }
   .runway-spotlights { display: none; animation: none; }
-  .projection-glint { display: none; animation: none; }
 }

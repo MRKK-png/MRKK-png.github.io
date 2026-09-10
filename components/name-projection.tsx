@@ -1,27 +1,24 @@
 import Image from "next/image";
 import type { CSSProperties } from 'react';
 
-// Fixed positions keep the server and client identical; independent periods avoid a shared pulse.
-const glints = [
-  [15, 24, 8.7, -2.1], [29, 71, 11.3, -7.4], [43, 39, 13.1, -4.8],
-  [53, 18, 9.9, -6.2], [64, 67, 14.7, -10.3], [76, 30, 12.1, -1.7],
-  [88, 76, 10.9, -8.6],
-];
-
 const spotlights = [
-  [7, 112, 10.8, -3.2, -8], [18, 94, 13.4, -7.8, 7], [31, 82, 11.7, -1.6, -5],
-  [45, 104, 14.2, -9.1, 6], [59, 88, 12.6, -5.3, -7], [73, 116, 15.1, -11.2, 8],
-  [87, 98, 11.9, -4.4, -6], [96, 108, 13.8, -8.5, 5],
+  { x: 27, width: 138, height: 780, angle: -12, duration: 9.7, delay: -4.2, low: .07, mid: .16, high: .27, blur: 22 },
+  { x: 41, width: 112, height: 720, angle: 18, duration: 12.9, delay: -8.1, low: .06, mid: .14, high: .24, blur: 19 },
+  { x: 72, width: 146, height: 820, angle: -10, duration: 11.3, delay: -2.7, low: .08, mid: .18, high: .3, blur: 24 },
+  { x: 89, width: 96, height: 690, angle: 7, duration: 14.6, delay: -10.4, low: .025, mid: .07, high: .12, blur: 27 },
 ];
 
 export function NameProjection() {
   return (
     <>
       <div className="runway-spotlights" aria-hidden="true">
-        {spotlights.map(([x, width, duration, delay, drift], index) => (
+        {spotlights.map((beam, index) => (
           <span key={index} className="spotlight-beam" style={{
-            left: `${x}%`, width: `${width}px`,
-            '--beam-duration': `${duration}s`, '--beam-delay': `${delay}s`, '--beam-drift': `${drift}px`,
+            left: `${beam.x}%`, width: `${beam.width}px`,
+            '--beam-height': `${beam.height}px`, '--beam-angle': `${beam.angle}deg`,
+            '--beam-duration': `${beam.duration}s`, '--beam-delay': `${beam.delay}s`,
+            '--beam-low': beam.low, '--beam-mid': beam.mid, '--beam-high': beam.high,
+            '--beam-blur': `${beam.blur}px`,
           } as CSSProperties} />
         ))}
       </div>
@@ -34,14 +31,6 @@ export function NameProjection() {
           alt="XIAO YUCHENG"
           priority
         />
-        <div className="projection-glints" aria-hidden="true">
-          {glints.map(([x, y, duration, delay], index) => (
-            <span key={index} className="projection-glint" style={{
-              left: `${x}%`, top: `${y}%`,
-              '--glint-duration': `${duration}s`, '--glint-delay': `${delay}s`,
-            } as CSSProperties} />
-          ))}
-        </div>
       </div>
     </>
   );
