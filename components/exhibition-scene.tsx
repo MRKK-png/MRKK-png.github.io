@@ -1,13 +1,13 @@
 /* oxlint-disable next/no-img-element -- This precompressed photographic plate is served directly; avoid runtime image processing. */
 import { ArchiveHotspots } from '@/components/archive-hotspots';
-import type { ArchiveEntryId } from '@/components/archive-content';
+import type { ArchiveTargetId } from '@/components/archive-content';
 
 /** Exterior plate and user-approved near-room plate for the threshold sequence. */
 export function ExhibitionScene({ roomReady, guidedIndex, freeExplore, onOpen }: {
   roomReady: boolean;
   guidedIndex: number;
   freeExplore: boolean;
-  onOpen: (entry: ArchiveEntryId) => void;
+  onOpen: (entry: ArchiveTargetId) => void;
 }) {
   return (
     <div className="scene-stage">

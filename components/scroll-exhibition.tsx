@@ -5,7 +5,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ExhibitionOverlay } from '@/components/exhibition-overlay';
 import { ExhibitionScene } from '@/components/exhibition-scene';
-import { archiveEntries, type ArchiveEntryId } from '@/components/archive-content';
+import { archiveEntries, type ArchiveEntryId, type ArchiveTargetId } from '@/components/archive-content';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 
 const chapterOrder: ArchiveEntryId[] = ['about', 'work', 'archive'];
@@ -17,6 +17,7 @@ export function ScrollExhibition() {
   const [roomReady, setRoomReady] = useState(false);
   const [activeEntry, setActiveEntry] = useState<ArchiveEntryId | null>(null);
   const [visited, setVisited] = useState<ArchiveEntryId[]>([]);
+  const [projectTransition, setProjectTransition] = useState(false);
 
   const guidedIndex = chapterOrder.findIndex((entry) => !visited.includes(entry));
   const freeExplore = guidedIndex === -1;
@@ -35,8 +36,20 @@ export function ScrollExhibition() {
     }
   }, []);
 
-  const openEntry = (entry: ArchiveEntryId) => {
+  const openEntry = (entry: ArchiveTargetId) => {
     returnFocusRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    if (entry === 'second-nice') {
+      setProjectTransition(true);
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      gsap.to('.near-room', {
+        scale: reduceMotion ? 1.18 : 1.42,
+        xPercent: reduceMotion ? 2 : 14,
+        duration: reduceMotion ? 0.16 : 0.68,
+        ease: 'power2.inOut',
+        onComplete: () => window.location.assign('/archive/2nd-nice'),
+      });
+      return;
+    }
     setActiveEntry(entry);
   };
 
@@ -188,6 +201,10 @@ export function ScrollExhibition() {
           onOpen={openEntry}
         />
         <ExhibitionOverlay onNavigate={openEntry} />
+        <div className={`project-transition-label${projectTransition ? ' is-visible' : ''}`} aria-hidden={!projectTransition}>
+          <span>ARCHIVE / SOCIAL DESIGN</span>
+          <strong>2nd NICE 第二好</strong>
+        </div>
         <Dialog open={activeEntry !== null} onOpenChange={handleDialogChange}>
           {activeEntry && (
             <DialogContent className="archive-sheet sm:max-w-2xl">

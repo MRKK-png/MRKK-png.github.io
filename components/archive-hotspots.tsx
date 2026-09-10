@@ -1,11 +1,11 @@
 import type { CSSProperties } from 'react';
-import type { ArchiveEntryId } from '@/components/archive-content';
+import type { ArchiveTargetId } from '@/components/archive-content';
 
 type HotspotData = {
   id: string;
   chapter?: number;
   label: string;
-  entry: ArchiveEntryId;
+  entry: ArchiveTargetId;
   details: string[];
   x: number;
   y: number;
@@ -33,13 +33,13 @@ const freeExploreHotspots: HotspotData[] = [
   { id: 'free-computer', label: 'COMPUTER', entry: 'work', details: ['Projects', 'Prototypes / AI products'], x: 39, y: 57 },
   { id: 'free-books', label: 'BOOKS', entry: 'archive', details: ['Research', 'References / field notes'], x: 70, y: 43, align: 'right' },
   {
-    id: 'free-clothes', label: 'CLOTHES', entry: 'about', details: ['Identity', 'Personal perspective'], x: 20, y: 42,
+    id: 'free-clothes', label: 'CLOTHES', entry: 'second-nice', details: ['Identity', 'Social Design', '2nd NICE'], x: 20, y: 42,
   },
   { id: 'free-documents', label: 'DOCUMENTS', entry: 'about', details: ['Education', 'Experience / resume'], x: 83, y: 70, align: 'right' },
   { id: 'free-photographs', label: 'PHOTOGRAPHS', entry: 'archive', details: ['Visual archive', 'Memory / places'], x: 49, y: 36 },
 ];
 
-function ArchiveHotspot({ item, onOpen }: { item: HotspotData; onOpen: (entry: ArchiveEntryId) => void }) {
+function ArchiveHotspot({ item, onOpen }: { item: HotspotData; onOpen: (entry: ArchiveTargetId) => void }) {
   const position = {
     '--hotspot-x': `${item.x}%`,
     '--hotspot-y': `${item.y}%`,
@@ -77,7 +77,7 @@ export function ArchiveHotspots({
   active: boolean;
   guidedIndex: number;
   freeExplore: boolean;
-  onOpen: (entry: ArchiveEntryId) => void;
+  onOpen: (entry: ArchiveTargetId) => void;
 }) {
   const visibleHotspots = freeExplore ? freeExploreHotspots : [guidedHotspots[guidedIndex]];
 

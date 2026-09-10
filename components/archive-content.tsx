@@ -1,6 +1,8 @@
 import type { ReactNode } from 'react';
+import Link from 'next/link';
 
 export type ArchiveEntryId = 'about' | 'work' | 'archive' | 'contact';
+export type ArchiveTargetId = ArchiveEntryId | 'second-nice';
 
 type ArchiveEntry = {
   eyebrow: string;
@@ -90,6 +92,12 @@ export const archiveEntries: Record<ArchiveEntryId, ArchiveEntry> = {
         <Fact label="Field Notes"><p>日常观察、旅行记录与视觉研究 / Observations and visual research</p></Fact>
         <Fact label="Architecture"><p>[ Add architecture works ]</p></Fact>
         <Fact label="Research"><p>[ Add research notes ]</p></Fact>
+        <Fact label="Social Design">
+          <Link className="archive-project-link" href="/archive/2nd-nice">
+            <span>2nd NICE 第二好</span>
+            <small>Community-based circular fashion practice</small>
+          </Link>
+        </Fact>
         <Fact label="Themes">
           <ul className="archive-keywords"><li>Human-centered AI</li><li>Spatial Intelligence</li><li>Future Living</li><li>Extreme Environment</li><li>Human flourishing</li></ul>
         </Fact>
