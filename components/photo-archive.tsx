@@ -1,8 +1,9 @@
+/* oxlint-disable next/no-html-link-for-pages -- Full navigation avoids a vinext production RSC navigation failure. */
 'use client';
 
+/* oxlint-disable next/no-img-element -- These local WebP assets are already resized and compressed. */
+
 import { useEffect, useRef, useState } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
 import { photoAlbums, type AlbumPhoto, type PhotoAlbum } from '@/lib/photo-albums';
 import { useIsMobile } from '@/hooks/use-mobile';
 
@@ -31,7 +32,7 @@ function PhotoPrint({ photo, active, onPlay, replay, reduced }: {
   }, []);
   return <>
     <div className="photo-print">
-      <Image src={photo.src} alt={photo.alt} fill unoptimized loading="eager" style={{ objectFit: 'contain' }} sizes="(max-width: 767px) 90vw, 42vw" draggable={false} />
+      <img src={photo.src} alt={photo.alt} loading="eager" style={{ objectFit: 'contain' }} draggable={false} />
       {photo.video && <video ref={video} muted playsInline preload="none" aria-label={photo.alt}
         className={playing ? 'is-playing' : ''} onPlaying={() => setPlaying(true)}
         onPause={() => setPlaying(false)} onEnded={() => setPlaying(false)}
@@ -52,7 +53,7 @@ function PaperPage({ album, index, activeClip, onPlay, replay, reduced, still = 
   return <div className={`album-paper ${index % 2 ? 'paper-right' : 'paper-left'}`}>
     <div className="paper-running"><span>{album.english}</span><span>{album.number}</span></div>
     {photo ? <figure className="paper-figure">
-      {still ? <div className="photo-print"><Image src={photo.src} alt="" fill unoptimized loading="eager" style={{ objectFit: 'contain' }} sizes="42vw" draggable={false} /></div> :
+      {still ? <div className="photo-print"><img src={photo.src} alt="" loading="eager" style={{ objectFit: 'contain' }} draggable={false} /></div> :
         <PhotoPrint key={photo.id} photo={photo} active={activeClip === photo.id} onPlay={() => onPlay(photo.id)} replay={activeClip === photo.id ? replay : 0} reduced={reduced} />}
       <figcaption><span>{photo.id.startsWith('IMG') ? photo.id : 'AUTUMN / 2025'}</span><span>{String(index + 1).padStart(2, '0')}</span></figcaption>
     </figure> : <div className="paper-end"><span>END OF ALBUM</span><p>{album.title}</p><small>{album.photos.length} PHOTOGRAPHS</small></div>}
@@ -126,16 +127,16 @@ export function PhotoArchive() {
   });
   return <main className={`photo-archive${album ? ' album-is-open' : ''}`} ref={root} tabIndex={-1}>
     <header className="photo-header">
-      <Link className="photo-return" href="/" onClick={e => {
+      <a className="photo-return" href="/" onClick={e => {
         if (new URLSearchParams(window.location.search).get('from') === 'room' && window.history.length > 1) { e.preventDefault(); window.history.back(); }
-      }}>← <span>返回档案室</span></Link>
+      }}>← <span>返回档案室</span></a>
       <span className="photo-header-label">PERSONAL ARCHIVE / PHOTOGRAPHY</span>
       <span className="photo-header-count">{album ? `ALBUM ${album.number}` : '02 ALBUMS'}</span>
     </header>
     {!album ? <section className="photo-catalog" aria-labelledby="photo-title">
       <div className="photo-catalog-heading"><div><p>CHAPTER 03 / VISUAL RECORDS</p><h1 id="photo-title">PHOTO<br /><span>ALBUMS</span><sup>〔02〕</sup></h1></div><p className="photo-catalog-caption">摄影与片段<br />PHOTOGRAPHS & FRAGMENTS</p></div>
       <div className="album-shelf">{photoAlbums.map(item => <button id={`cover-${item.id}`} className={`album-cover album-cover-${item.id}`} key={item.id} aria-label={`打开${item.title}影集`} onClick={() => open(item)}>
-        <div className="cover-object"><div className="cover-running"><span>PERSONAL ARCHIVE</span><span>VOL. {item.number}</span></div><div className="cover-image"><Image src={item.cover} alt={item.title} fill unoptimized loading="eager" style={{ objectFit: item.id === 'greenland' ? 'cover' : 'contain' }} sizes="(max-width: 767px) 85vw, 32vw" draggable={false} /></div><div className="cover-title"><span>{item.english}</span><strong>{item.title}</strong></div><div className="cover-bottom"><span>{String(item.photos.length).padStart(2, '0')} PHOTOGRAPHS</span><span>{item.photos.some(p => p.video) ? 'STILL + LIVE' : 'FIELD PHOTOGRAPHY'}</span></div></div>
+        <div className="cover-object"><div className="cover-running"><span>PERSONAL ARCHIVE</span><span>VOL. {item.number}</span></div><div className="cover-image"><img src={item.cover} alt={item.title} loading="eager" style={{ objectFit: item.id === 'greenland' ? 'cover' : 'contain' }} draggable={false} /></div><div className="cover-title"><span>{item.english}</span><strong>{item.title}</strong></div><div className="cover-bottom"><span>{String(item.photos.length).padStart(2, '0')} PHOTOGRAPHS</span><span>{item.photos.some(p => p.video) ? 'STILL + LIVE' : 'FIELD PHOTOGRAPHY'}</span></div></div>
         <div className="cover-label"><span>{item.number} / {item.title}</span><span>打开影集 ↗</span></div>
       </button>)}</div>
       <footer className="photo-catalog-footer"><span>XIAO YUCHENG / 肖裕诚</span><span>COLLECTED MOMENTS</span></footer>
