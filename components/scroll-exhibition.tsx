@@ -154,7 +154,7 @@ export function ScrollExhibition() {
         .to('.glass-surface', { opacity: 0.035, duration: 0.13 }, 0.62)
         .to('.threshold-flash', { opacity: reduceMotion.matches ? 0 : 0.2, duration: 0.018 }, 0.625)
         .to('.threshold-flash', { opacity: 0, duration: 0.025 }, 0.643)
-        .to('.identity, .inventory, .archive-status, .scroll-cue, .name-projection, .runway-spotlights', {
+        .to('.identity, .inventory, .archive-status, .scroll-cue, .name-projection', {
           opacity: 0,
           duration: 0.16,
         }, 0.56)
