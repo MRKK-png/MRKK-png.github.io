@@ -88,7 +88,7 @@ export const archiveEntries: Record<ArchiveEntryId, ArchiveEntry> = {
     subtitle: '观察、收藏与研究 / Observations, collections and research',
     content: (
       <div className="archive-entry-content inspiration-grid">
-        <Fact label="Photography"><p>[ Add photography collection ]</p></Fact>
+        <Fact label="Photography"><Link className="archive-project-link" href="/archive/photo?from=room"><span>PHOTO ALBUMS / 摄影影集</span><small>2025 秋季学期总结 · 格陵兰暑期学校</small></Link></Fact>
         <Fact label="Field Notes"><p>日常观察、旅行记录与视觉研究 / Observations and visual research</p></Fact>
         <Fact label="Architecture"><p>[ Add architecture works ]</p></Fact>
         <Fact label="Research"><p>[ Add research notes ]</p></Fact>
