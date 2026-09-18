@@ -260,10 +260,6 @@ body { color: var(--foreground); font-family: var(--font-mono); -webkit-font-smo
 .leaf-face::after { content: ''; position: absolute; inset: 0; box-shadow: inset 0 0 50px #3c223b15; pointer-events: none; }
 @keyframes album-forward { from { transform: rotateY(0deg); } to { transform: rotateY(-180deg); } }
 @keyframes album-backward { from { transform: rotateY(0deg); } to { transform: rotateY(180deg); } }
-.page-corner { position: absolute; z-index: 8; bottom: 0; width: 44px; height: 44px; padding: 0; border: 0; color: #ad145b; background: transparent; font-size: 22px; cursor: pointer; }
-.corner-prev { left: 0; }.corner-next { right: 0; }
-.page-corner:hover:not(:disabled) { background: #ead6df; }
-.page-corner:disabled { opacity: 0; cursor: default; }
 .album-pagination { display: flex; align-items: center; justify-content: space-between; width: min(100%, 640px); gap: 24px; margin: 8px auto 0; }
 .album-pagination > span { font-size: 14px; font-variant-numeric: tabular-nums; color: #f3dde9; }
 .album-pagination i { color: #aa98a3; font-style: normal; }
@@ -319,7 +315,7 @@ body { color: var(--foreground); font-family: var(--font-mono); -webkit-font-smo
 .work-insights, .work-narrative { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 28px 0; }
 .work-insights li, .work-narrative > div { padding-top: 16px; border-top: 1px solid #bbadb5; }
 .work-insights { padding: 0; list-style: none; }.work-insights strong { font-weight: 400; }.work-insights p, .work-narrative p { font-size: 14px; }
-.work-film { display: block; width: 100%; aspect-ratio: 16 / 9; background: #080609; }
+.work-film { display: block; width: 100%; aspect-ratio: 1692 / 720; background: #080609; }
 .work-result { font-size: 64px !important; color: #d82478; }.work-result span { display: block; font-size: 14px; }
 .work-reflection { font-size: clamp(22px, 3vw, 36px); line-height: 1.5; margin: 20px 0; }
 @media (max-width: 760px) {
@@ -330,3 +326,40 @@ body { color: var(--foreground); font-family: var(--font-mono); -webkit-font-smo
   .sound-credits { width: min(310px, calc(100vw - 48px)); }
 }
 @media (prefers-reduced-motion: reduce) { .nav-label::after { transition: none; } }
+
+/* Focused archive branches and film documentation. */
+.work-document-hero h1.work-title-long { max-width: 18ch; font-size: clamp(42px, 6vw, 84px); line-height: 1.08; }
+.work-insights li > span { display: block; margin-top: 12px; font-size: 14px; line-height: 1.7; }
+.narrative-aligned { align-items: stretch; }
+.narrative-aligned > div { display: grid; grid-template-rows: auto 5.2em auto 1fr; align-content: start; }
+.narrative-aligned > div > span { color: #d82478; font-size: 12px; }
+.narrative-aligned h3 { margin: 16px 0 12px; font-size: 17px; line-height: 1.4; }
+.narrative-aligned h4 { margin: 0; font-size: 16px; font-weight: 400; }.narrative-aligned p { margin-top: 10px; }
+.film-triptych { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }.film-triptych .work-figure { margin: 8px 0 24px; }
+.film-storyboards { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }.film-storyboards .work-figure { margin: 12px 0; }
+.film-workflow { padding: clamp(16px, 3vw, 32px); border-top: 1px solid #b7aab1; border-bottom: 1px solid #b7aab1; margin: 0; }
+.film-workflow header > p:first-child, .film-workflow span { color: #d82478; font-size: 12px; letter-spacing: .035em; }
+.film-workflow header h3 { margin: 12px 0; font-size: clamp(24px, 3vw, 38px); }
+.film-workflow header p, .film-workflow section p, .workflow-script p { font-size: 14px; }
+.workflow-models { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 28px; }
+.workflow-models > div, .workflow-script, .workflow-branches section { padding: 18px; border: 1px solid #b9aeb4; }
+.film-workflow strong { display: block; font-weight: 400; margin-top: 12px; font-size: 18px; }
+.workflow-junction { text-align: center; color: #d82478; font-size: 26px; line-height: 1.5; }
+.workflow-script { max-width: 480px; margin: auto; text-align: center; }
+.workflow-branches { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.workflow-branches h4 { font-size: 17px; font-weight: 400; margin: 12px 0; }.workflow-branches small { font-size: 12px; color: #665b61; }
+.workflow-output { border-top: 1px solid #d82478; margin-top: 28px; padding-top: 18px; text-align: center; }
+.film-workflow figcaption { margin-top: 24px; color: #665b61; font-size: 12px; line-height: 1.7; }
+.page-edge { position: absolute; z-index: 8; top: 20px; bottom: 20px; width: 48px; padding: 0; border: 0; color: #ad145b; background: transparent; font-size: 26px; cursor: pointer; opacity: 0; transition: opacity 180ms ease; }
+.edge-prev { left: 0; }.edge-next { right: 0; }
+.open-album:hover .page-edge:not(:disabled), .page-edge:focus-visible { opacity: 1; background: #f1eeeeb3; }
+.page-edge:disabled { cursor: default; }
+@media (min-width: 768px) { .album-pagination button { display: none; }.album-pagination { justify-content: center; } }
+@media (max-width: 767px) {
+ .page-edge { display: none; }
+ .film-triptych, .film-storyboards { grid-template-columns: 1fr; }
+ .workflow-models, .workflow-branches { grid-template-columns: 1fr; }
+ .workflow-branches section + section::before { content: '↓'; display: block; color: #d82478; margin-bottom: 12px; }
+ .narrative-aligned > div { display: block; }.narrative-aligned h3 { margin-bottom: 14px; }
+}
+@media (prefers-reduced-motion: reduce) { .page-edge { transition: none; } }

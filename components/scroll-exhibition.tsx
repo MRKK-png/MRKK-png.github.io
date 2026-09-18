@@ -38,6 +38,10 @@ export function ScrollExhibition() {
 
   const openEntry = (entry: ArchiveTargetId) => {
     returnFocusRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    if (entry === 'protocol' || entry === 'photos') {
+      window.location.assign(entry === 'protocol' ? '/work/x03?from=room' : '/archive/photo?from=room');
+      return;
+    }
     if (entry === 'second-nice') {
       setProjectTransition(true);
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

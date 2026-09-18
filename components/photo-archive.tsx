@@ -153,12 +153,12 @@ export function PhotoArchive() {
               <div className="leaf-face leaf-back">{page(turn.direction > 0 ? turn.to : turn.to + 1, true)}</div>
             </div>}
           </>}
-          <button className="page-corner corner-prev" aria-label="上一页" disabled={index === 0 || !!turn} onClick={() => flip(-1)}>↶</button>
-          <button className="page-corner corner-next" aria-label="下一页" disabled={index + step >= album.photos.length || !!turn} onClick={() => flip(1)}>↷</button>
+          <button className="page-edge edge-prev" aria-label={mobile ? '上一页' : '上一跨页'} disabled={index === 0 || !!turn} onClick={() => flip(-1)}>←</button>
+          <button className="page-edge edge-next" aria-label={mobile ? '下一页' : '下一跨页'} disabled={index + step >= album.photos.length || !!turn} onClick={() => flip(1)}>→</button>
         </div>
       </div>
-      <nav className="album-pagination" aria-label="影集翻页"><button onClick={() => flip(-1)} disabled={index === 0 || !!turn}>← 上一页</button><span aria-live="polite" aria-atomic="true">{String(index + 1).padStart(2, '0')}{!mobile && index + 1 < album.photos.length ? ` — ${String(index + 2).padStart(2, '0')}` : ''} <i>/ {String(album.photos.length).padStart(2, '0')}</i></span><button onClick={() => flip(1)} disabled={index + step >= album.photos.length || !!turn}>下一页 →</button></nav>
-      <p className="album-instructions">{mobile ? '左右滑动翻页' : '点击页角或使用 ← → 翻页'}{album.photos.some(p => p.video) ? ' · 点击 LIVE 重播动态照片' : ''}</p>
+      <nav className="album-pagination" aria-label="影集翻页"><button onClick={() => flip(-1)} disabled={index === 0 || !!turn}>← {mobile ? '上一页' : '上一跨页'}</button><span aria-live="polite" aria-atomic="true">{String(index + 1).padStart(2, '0')}{!mobile && index + 1 < album.photos.length ? ` — ${String(index + 2).padStart(2, '0')}` : ''} <i>/ {String(album.photos.length).padStart(2, '0')}</i></span><button onClick={() => flip(1)} disabled={index + step >= album.photos.length || !!turn}>{mobile ? '下一页' : '下一跨页'} →</button></nav>
+      <p className="album-instructions">{mobile ? '左右滑动翻页' : '点击书页外缘或使用 ← → 翻页'}{album.photos.some(p => p.video) ? ' · 点击 LIVE 重播动态照片' : ''}</p>
     </section>}
   </main>;
 }

@@ -2,8 +2,8 @@
 import type { ReactNode } from 'react';
 import Link from 'next/link';
 
-export type ArchiveEntryId = 'about' | 'work' | 'archive' | 'contact';
-export type ArchiveTargetId = ArchiveEntryId | 'second-nice';
+export type ArchiveEntryId = 'about' | 'work' | 'archive' | 'contact' | 'internship' | 'sources';
+export type ArchiveTargetId = ArchiveEntryId | 'second-nice' | 'protocol' | 'photos';
 
 type ArchiveEntry = {
   eyebrow: string;
@@ -19,6 +19,13 @@ function Fact({ label, children }: { label: string; children: ReactNode }) {
       <div>{children}</div>
     </section>
   );
+}
+
+function ExperienceRecords() {
+  return <>
+    <article><p><strong>上海首序智能科技有限公司</strong></p><p>AI 产品经理 / AI Product Manager</p><p>2026.07–2026.09</p></article>
+    <article><p><strong>Beijing Glee Technology</strong></p><p>AI 产品经理实习生 / AI Product Manager Intern</p><p>2025.12–2026.04</p></article>
+  </>;
 }
 
 export const archiveEntries: Record<ArchiveEntryId, ArchiveEntry> = {
@@ -43,11 +50,7 @@ export const archiveEntries: Record<ArchiveEntryId, ArchiveEntry> = {
             <p>Architecture · 2020.09–2025.07</p>
           </article>
         </Fact>
-        <Fact label="Experience">
-          <p><strong>墨斗云</strong></p>
-          <p>AI Product Manager Intern</p>
-          <p>Beijing Glee Technology · 2025.12–2026.04</p>
-        </Fact>
+        <Fact label="Experience"><ExperienceRecords /></Fact>
         <Fact label="Skills">
           <ul className="archive-keywords">
             <li>AI Product Design</li><li>Interaction Design</li><li>Human-AI Interaction</li><li>Spatial Design</li>
@@ -86,13 +89,7 @@ export const archiveEntries: Record<ArchiveEntryId, ArchiveEntry> = {
           <p>评估 AI 模型能否理解设计需求的基准框架。</p>
           <ul className="archive-keywords"><li>Design Brief</li><li>Functional Constraints</li><li>Layout Logic</li><li>Visual Specification</li></ul>
         </article>
-        <article className="archive-project">
-          <span>SPECULATIVE DESIGN</span>
-          <h3><a className="archive-work-link" href="/work/x03?from=room">X03 — Governed by the Protocol ↗</a></h3>
-          <p className="project-subtitle">A speculative film on AI-mediated communication</p>
-          <p>当沟通被交给身体中的 AI 代理，人类还拥有多少表达的自主性？</p>
-          <p className="project-role">INDEPENDENT PROJECT / XIAO YUCHENG</p>
-        </article>
+
       </div>
     ),
   },
@@ -103,6 +100,7 @@ export const archiveEntries: Record<ArchiveEntryId, ArchiveEntry> = {
     content: (
       <div className="archive-entry-content inspiration-grid">
         <Fact label="Photography"><a className="archive-project-link" href="/archive/photo?from=room"><span>PHOTO ALBUMS / 摄影影集</span><small>2025 秋季学期总结 · 格陵兰暑期学校</small></a></Fact>
+        <Fact label="Moving Image"><a className="archive-project-link" href="/work/x03?from=room"><span>Governed by the Protocol</span><small>Speculative film / 推想影像</small></a></Fact>
         <Fact label="Field Notes"><p>日常观察、旅行记录与视觉研究 / Observations and visual research</p></Fact>
         <Fact label="Architecture"><p>[ Add architecture works ]</p></Fact>
         <Fact label="Research"><p>[ Add research notes ]</p></Fact>
@@ -117,6 +115,16 @@ export const archiveEntries: Record<ArchiveEntryId, ArchiveEntry> = {
         </Fact>
       </div>
     ),
+  },
+  internship: {
+    eyebrow: 'CHAPTER 02 / INTERNSHIP', title: 'PROFESSIONAL EXPERIENCE',
+    subtitle: '实习与专业实践 / Internship and professional practice',
+    content: <div className="archive-entry-content"><Fact label="Experience"><ExperienceRecords /></Fact><Fact label="Practice"><p><strong>墨斗云</strong></p><p>AI 辅助建筑资产生成、多模态数据处理与 B2B 产品工作流。</p><p>AI-powered BIM data production platform</p></Fact></div>,
+  },
+  sources: {
+    eyebrow: 'CHAPTER 03 / RESEARCH & REFERENCES', title: 'RESEARCH & REFERENCES',
+    subtitle: '研究兴趣与建筑背景 / Research interests and architecture',
+    content: <div className="archive-entry-content"><Fact label="Research Interests"><ul className="archive-keywords"><li>Human-centered AI</li><li>Spatial Intelligence</li><li>Future Living</li><li>Extreme Environment</li><li>Human flourishing</li></ul></Fact><Fact label="Architecture"><p>广东工业大学 / Guangdong University of Technology</p><p>Architecture · 2020.09–2025.07</p><p>[ 建筑作品待补充 / Architecture works to be added ]</p></Fact><Fact label="References"><p>[ 参考书目与研究笔记待补充 / Reading list and research notes to be added ]</p></Fact></div>,
   },
   contact: {
     eyebrow: 'CHAPTER 04 / CONNECTION',
