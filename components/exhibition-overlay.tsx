@@ -19,7 +19,6 @@ export function ExhibitionOverlay({ onNavigate }: { onNavigate: (entry: ArchiveE
           {navigation.map((item) => (
             <div className="nav-entry" key={item.label}>
               <Button variant="ghost" className="nav-label" onClick={() => onNavigate(item.entry)}>{item.label}</Button>
-              <span className="nav-note" aria-hidden="true">OPEN INDEX</span>
             </div>
           ))}
         </nav>

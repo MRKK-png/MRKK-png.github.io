@@ -63,6 +63,16 @@ export default function SecondNiceArchivePage() {
               <figcaption>FIG. 03 / 社区参与者与服装的现场记录。具体活动日期：[ 待补充 ]。</figcaption>
             </figure>
           </div>
+          <div className="project-workshop-records">
+            <figure className="project-figure">
+              <img src={`${base}/workshop-process.webp`} width={1600} height={1200} alt="Hands arranging and joining reused fabric pieces into a bag during a workshop" loading="lazy" />
+              <figcaption>WORKSHOP RECORD / 工作坊现场：通过材料拼接与手工制作，探索旧衣物的再次使用。日期：[ 待补充 ]。</figcaption>
+            </figure>
+            <figure className="project-figure">
+              <img src={`${base}/workshop-participation.webp`} width={1400} height={1050} alt="A group presenting a handmade tote bag" loading="lazy" />
+              <figcaption>PARTICIPATION RECORD / 成品托特包与参与合影。日期：[ 待补充 ]。</figcaption>
+            </figure>
+          </div>
         </section>
 
         <section className="project-section project-impact">

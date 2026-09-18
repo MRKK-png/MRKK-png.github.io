@@ -8,7 +8,7 @@ export type ArchiveTargetId = ArchiveEntryId | 'second-nice';
 type ArchiveEntry = {
   eyebrow: string;
   title: string;
-  subtitle: string;
+  subtitle?: string;
   content: ReactNode;
 };
 
@@ -64,6 +64,12 @@ export const archiveEntries: Record<ArchiveEntryId, ArchiveEntry> = {
     content: (
       <div className="archive-entry-content project-index">
         <article className="archive-project">
+          <span>HEALTHCARE &amp; SERVICE DESIGN</span>
+          <h3><a className="archive-work-link" href="/work/thyra?from=room">Thyra ↗</a></h3>
+          <p className="project-subtitle">Patient-centered I-131 Care</p>
+          <p>以患者为中心的甲状腺癌 I-131 治疗服务优化设计。美国明尼苏达大学医学院合作项目。</p>
+        </article>
+        <article className="archive-project">
           <span>PROJECT 01</span><h3>墨斗云</h3>
           <p className="project-subtitle">AI-powered BIM data production platform</p>
           <p>AI 辅助建筑资产生成、多模态数据处理与 B2B 产品工作流。</p>
@@ -79,6 +85,13 @@ export const archiveEntries: Record<ArchiveEntryId, ArchiveEntry> = {
           <p className="project-subtitle">AI Design Capability Evaluation Benchmark</p>
           <p>评估 AI 模型能否理解设计需求的基准框架。</p>
           <ul className="archive-keywords"><li>Design Brief</li><li>Functional Constraints</li><li>Layout Logic</li><li>Visual Specification</li></ul>
+        </article>
+        <article className="archive-project">
+          <span>SPECULATIVE DESIGN</span>
+          <h3><a className="archive-work-link" href="/work/x03?from=room">X03 — Governed by the Protocol ↗</a></h3>
+          <p className="project-subtitle">A speculative film on AI-mediated communication</p>
+          <p>当沟通被交给身体中的 AI 代理，人类还拥有多少表达的自主性？</p>
+          <p className="project-role">INDEPENDENT PROJECT / XIAO YUCHENG</p>
         </article>
       </div>
     ),
@@ -106,9 +119,8 @@ export const archiveEntries: Record<ArchiveEntryId, ArchiveEntry> = {
     ),
   },
   contact: {
-    eyebrow: 'DIGITAL BUSINESS CARD',
+    eyebrow: 'CHAPTER 04 / CONNECTION',
     title: 'CONTACT',
-    subtitle: '保持联系 / Stay in touch',
     content: (
       <div className="archive-entry-content contact-card">
         <p className="archive-person-name">肖裕诚 / XIAO YUCHENG</p>

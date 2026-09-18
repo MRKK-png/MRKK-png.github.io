@@ -215,7 +215,9 @@ export function ScrollExhibition() {
               <DialogHeader className="archive-sheet-header">
                 <p className="archive-sheet-index">{archiveEntries[activeEntry].eyebrow}</p>
                 <DialogTitle className="archive-sheet-title">{archiveEntries[activeEntry].title}</DialogTitle>
-                <DialogDescription className="archive-sheet-description">{archiveEntries[activeEntry].subtitle}</DialogDescription>
+                <DialogDescription className={archiveEntries[activeEntry].subtitle ? 'archive-sheet-description' : 'sr-only'}>
+                  {archiveEntries[activeEntry].subtitle ?? 'Email and WeChat contact details for XIAO YUCHENG.'}
+                </DialogDescription>
               </DialogHeader>
               <div className="archive-sheet-rule" />
               {archiveEntries[activeEntry].content}
