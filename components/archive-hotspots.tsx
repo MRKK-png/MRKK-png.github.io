@@ -30,7 +30,7 @@ const guidedHotspots: HotspotData[] = [
 
 const freeExploreHotspots: HotspotData[] = [
   { id: 'free-camera', label: 'CAMERA', entry: 'protocol', details: ['Moving Image', 'Governed by the Protocol'], x: 12, y: 69 },
-  { id: 'free-computer', label: 'COMPUTER', entry: 'work', details: ['Projects', 'Prototypes / AI products'], x: 39, y: 57 },
+  { id: 'free-computer', label: 'COMPUTER', entry: 'work', details: ['Projects', 'AI products / 点马成金'], x: 39, y: 57 },
   { id: 'free-books', label: 'BOOKS', entry: 'sources', details: ['Research', 'References / field notes'], x: 70, y: 47, align: 'right' },
   {
     id: 'free-clothes', label: 'CLOTHES', entry: 'second-nice', details: ['Identity', 'Social Design', '2nd NICE'], x: 20, y: 42,

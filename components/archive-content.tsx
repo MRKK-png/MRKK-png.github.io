@@ -79,9 +79,9 @@ export const archiveEntries: Record<ArchiveEntryId, ArchiveEntry> = {
           <p className="project-role">ROLE / AI Product Manager Intern</p>
         </article>
         <article className="archive-project">
-          <span>PROJECT 02</span><h3>点马成金</h3>
-          <p className="project-subtitle">AI Career Capability Diagnosis Agent</p>
-          <p>将个人经历转化为能力映射、岗位匹配、差距诊断与作品集生成的 AI Agent。</p>
+          <span>AI PRODUCT / SKILL DESIGN</span><h3><a className="archive-work-link" href="/work/dianma-chengjin?from=room">点马成金 ↗</a></h3>
+          <p className="project-subtitle">AI 能力识别与转行规划系统</p>
+          <p>将个人经历转化为能力识别、岗位匹配、缺口诊断与作品集策略的 Skill 设计。</p>
         </article>
         <article className="archive-project">
           <span>PROJECT 03</span><h3>DesignSpec-Bench</h3>
