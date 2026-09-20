@@ -1,4 +1,5 @@
 /* oxlint-disable next/no-html-link-for-pages -- Full navigation avoids a vinext production RSC navigation failure. */
+/* oxlint-disable jsx-a11y/media-has-caption -- Live Photo source clips do not include separate caption tracks. */
 'use client';
 
 /* oxlint-disable next/no-img-element -- These local WebP assets are already resized and compressed. */
@@ -7,8 +8,8 @@ import { useEffect, useRef, useState } from 'react';
 import { photoAlbums, type AlbumPhoto, type PhotoAlbum } from '@/lib/photo-albums';
 import { useIsMobile } from '@/hooks/use-mobile';
 
-function PhotoPrint({ photo, active, onPlay, replay, reduced }: {
-  photo: AlbumPhoto; active: boolean; onPlay: () => void; replay: number; reduced: boolean;
+function PhotoPrint({ photo, active, onPlay }: {
+  photo: AlbumPhoto; active: boolean; onPlay: () => void;
 }) {
   const video = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
@@ -16,15 +17,8 @@ function PhotoPrint({ photo, active, onPlay, replay, reduced }: {
   useEffect(() => {
     const el = video.current;
     if (!el || !photo.video) return;
-    if (!active || (reduced && replay === 0)) { el.pause(); return; }
-    let cancelled = false;
-    const timer = window.setTimeout(() => {
-      el.src = photo.video!;
-      el.currentTime = 0;
-      void el.play().then(() => { if (cancelled) el.pause(); }).catch(() => {});
-    }, replay ? 0 : 450);
-    return () => { cancelled = true; window.clearTimeout(timer); el.pause(); };
-  }, [active, photo.video, replay, reduced]);
+    if (!active) el.pause();
+  }, [active, photo.video]);
   useEffect(() => {
     const hide = () => { if (document.hidden) video.current?.pause(); };
     document.addEventListener('visibilitychange', hide);
@@ -33,28 +27,34 @@ function PhotoPrint({ photo, active, onPlay, replay, reduced }: {
   return <>
     <div className="photo-print">
       <img src={photo.src} alt={photo.alt} loading="eager" style={{ objectFit: 'contain' }} draggable={false} />
-      {photo.video && <video ref={video} muted playsInline preload="none" aria-label={photo.alt}
+      {photo.video && <video ref={video} src={photo.video} playsInline preload="metadata" aria-label={photo.alt}
         className={playing ? 'is-playing' : ''} onPlaying={() => setPlaying(true)}
         onPause={() => setPlaying(false)} onEnded={() => setPlaying(false)}
         onError={() => { setPlaying(false); setFailed(true); }} />}
     </div>
     {photo.video && <button type="button" className="photo-live" aria-label={playing ? '暂停动态照片' : '播放动态照片'}
-      onClick={() => { if (playing) video.current?.pause(); else { setFailed(false); onPlay(); } }}>
+      onClick={() => {
+        const el = video.current;
+        if (!el) return;
+        if (playing) { el.pause(); return; }
+        setFailed(false); onPlay(); el.currentTime = 0;
+        void el.play().catch(() => setFailed(true));
+      }}>
       <span aria-hidden="true">{playing ? 'Ⅱ' : '↻'}</span> {failed ? '重试 LIVE' : playing ? 'PAUSE' : 'LIVE'}
     </button>}
   </>;
 }
 
-function PaperPage({ album, index, activeClip, onPlay, replay, reduced, still = false }: {
+function PaperPage({ album, index, activeClip, onPlay, still = false }: {
   album: PhotoAlbum; index: number; activeClip: string | null; onPlay: (id: string) => void;
-  replay: number; reduced: boolean; still?: boolean;
+  still?: boolean;
 }) {
   const photo = album.photos[index];
   return <div className={`album-paper ${index % 2 ? 'paper-right' : 'paper-left'}`}>
     <div className="paper-running"><span>{album.english}</span><span>{album.number}</span></div>
     {photo ? <figure className="paper-figure">
       {still ? <div className="photo-print"><img src={photo.src} alt="" loading="eager" style={{ objectFit: 'contain' }} draggable={false} /></div> :
-        <PhotoPrint key={photo.id} photo={photo} active={activeClip === photo.id} onPlay={() => onPlay(photo.id)} replay={activeClip === photo.id ? replay : 0} reduced={reduced} />}
+        <PhotoPrint key={photo.id} photo={photo} active={activeClip === photo.id} onPlay={() => onPlay(photo.id)} />}
       <figcaption><span>{photo.id.startsWith('IMG') ? photo.id : 'AUTUMN / 2025'}</span><span>{String(index + 1).padStart(2, '0')}</span></figcaption>
     </figure> : <div className="paper-end"><span>END OF ALBUM</span><p>{album.title}</p><small>{album.photos.length} PHOTOGRAPHS</small></div>}
   </div>;
@@ -66,7 +66,6 @@ export function PhotoArchive() {
   const [turn, setTurn] = useState<{ from: number; to: number; direction: number } | null>(null);
   const [reduced, setReduced] = useState(true);
   const [activeClip, setActiveClip] = useState<string | null>(null);
-  const [replay, setReplay] = useState(0);
   const root = useRef<HTMLElement>(null);
   const turning = useRef(false);
   const touch = useRef<{ x: number; y: number } | null>(null);
@@ -86,7 +85,7 @@ export function PhotoArchive() {
     const timer = window.setTimeout(() => {
       setPositions(p => ({ ...p, [selected]: turn.to }));
       setActiveClip(album?.photos[turn.to]?.id || null);
-      setReplay(0); setTurn(null); turning.current = false;
+      setTurn(null); turning.current = false;
     }, reduced ? 0 : 780);
     return () => window.clearTimeout(timer);
   }, [turn, selected, album, reduced]);
@@ -99,7 +98,7 @@ export function PhotoArchive() {
   const open = (item: PhotoAlbum) => {
     setSelected(item.id); setTurn(null); turning.current = false;
     const pos = positions[item.id] || 0;
-    setActiveClip(item.photos[mobile ? pos : pos - pos % 2]?.id || null); setReplay(0);
+    setActiveClip(item.photos[mobile ? pos : pos - pos % 2]?.id || null);
     requestAnimationFrame(() => root.current?.focus());
   };
   const close = () => {
@@ -112,8 +111,8 @@ export function PhotoArchive() {
     if (to < 0 || to >= album.photos.length) return;
     turning.current = true; setActiveClip(null); setTurn({ from: index, to, direction });
   };
-  const play = (id: string) => { setActiveClip(id); setReplay(r => r + 1); };
-  const page = (n: number, still = false) => album && <PaperPage album={album} index={n} activeClip={turn ? null : activeClip} onPlay={play} replay={replay} reduced={reduced} still={still} />;
+  const play = (id: string) => setActiveClip(id);
+  const page = (n: number, still = false) => album && <PaperPage album={album} index={n} activeClip={turn ? null : activeClip} onPlay={play} still={still} />;
   useEffect(() => {
     if (!album) return;
     const onKey = (e: KeyboardEvent) => {
@@ -158,7 +157,7 @@ export function PhotoArchive() {
         </div>
       </div>
       <nav className="album-pagination" aria-label="影集翻页"><button onClick={() => flip(-1)} disabled={index === 0 || !!turn}>← {mobile ? '上一页' : '上一跨页'}</button><span aria-live="polite" aria-atomic="true">{String(index + 1).padStart(2, '0')}{!mobile && index + 1 < album.photos.length ? ` — ${String(index + 2).padStart(2, '0')}` : ''} <i>/ {String(album.photos.length).padStart(2, '0')}</i></span><button onClick={() => flip(1)} disabled={index + step >= album.photos.length || !!turn}>{mobile ? '下一页' : '下一跨页'} →</button></nav>
-      <p className="album-instructions">{mobile ? '左右滑动翻页' : '点击书页外缘或使用 ← → 翻页'}{album.photos.some(p => p.video) ? ' · 点击 LIVE 重播动态照片' : ''}</p>
+      <p className="album-instructions">{mobile ? '左右滑动翻页' : '点击书页外缘或使用 ← → 翻页'}{album.photos.some(p => p.video) ? ' · 点击 LIVE 播放有声动态照片' : ''}</p>
     </section>}
   </main>;
 }

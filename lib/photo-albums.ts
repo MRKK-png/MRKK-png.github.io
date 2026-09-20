@@ -10,7 +10,7 @@ export const photoAlbums: PhotoAlbum[] = [
     { id: 'autumn-05', alt: '城市夜景、洋红播放器与日常片段的拼贴' },
     { id: 'autumn-06', alt: '人物、活动与桌面窗口的拼贴' },
     { id: 'autumn-07', alt: '舞蹈、灯光与摄像机的拼贴' },
-  ].map(p => ({ ...p, src: asset + p.id + '.webp', video: asset + p.id + '.mp4' })) },
+  ].map(p => ({ ...p, src: asset + p.id + '.webp', video: asset + p.id + '.m4v' })) },
   { id: 'greenland', number: '02', title: '格陵兰暑期学校', english: 'GREENLAND / SUMMER SCHOOL', cover: asset + 'IMG_4003.webp', photos: [
     { id: 'IMG_3561', alt: '木栈道上的人物，身后是冰山与苔原' },
     { id: 'IMG_3705', alt: '岩石之间望向布满浮冰的海湾' },
