@@ -23,8 +23,8 @@ function Fact({ label, children }: { label: string; children: ReactNode }) {
 
 function ExperienceRecords() {
   return <>
-    <article><p><strong>上海首序智能科技有限公司</strong></p><p>AI 产品经理 / AI Product Manager</p><p>2026.07–2026.09</p></article>
-    <article><p><strong>Beijing Glee Technology</strong></p><p>AI 产品经理实习生 / AI Product Manager Intern</p><p>2025.12–2026.04</p></article>
+    <article><p><strong>上海首序智能科技有限公司</strong></p><p>AI 产品经理实习生 / AI Product Manager Intern</p><p>2026.07–2026.09</p></article>
+    <article><p><strong>北京构力科技有限公司 / PKPM</strong></p><p>AI 产品经理实习生 / AI Product Manager Intern</p><p>2025.12–2026.04</p></article>
   </>;
 }
 
@@ -84,10 +84,10 @@ export const archiveEntries: Record<ArchiveEntryId, ArchiveEntry> = {
           <p>将个人经历转化为能力识别、岗位匹配、缺口诊断与作品集策略的 Skill 设计。</p>
         </article>
         <article className="archive-project">
-          <span>PROJECT 03</span><h3>DesignSpec-Bench</h3>
-          <p className="project-subtitle">AI Design Capability Evaluation Benchmark</p>
-          <p>评估 AI 模型能否理解设计需求的基准框架。</p>
-          <ul className="archive-keywords"><li>Design Brief</li><li>Functional Constraints</li><li>Layout Logic</li><li>Visual Specification</li></ul>
+          <span>AI EVALUATION RESEARCH</span><h3><a className="archive-work-link" href="/work/designspec-bench?from=room">DesignSpec-Bench ↗</a></h3>
+          <p className="project-subtitle">Conflict Handling in Multimodal Design Tasks</p>
+          <p>评估多模态大模型面对设计文本与视觉规范冲突时的处理行为。</p>
+          <ul className="archive-keywords"><li>5 Conflict Types</li><li>C / T / S Coding</li><li>4 MLLMs</li><li>Pilot Benchmark</li></ul>
         </article>
 
       </div>
@@ -119,7 +119,7 @@ export const archiveEntries: Record<ArchiveEntryId, ArchiveEntry> = {
   internship: {
     eyebrow: 'CHAPTER 02 / INTERNSHIP', title: 'PROFESSIONAL EXPERIENCE',
     subtitle: '实习与专业实践 / Internship and professional practice',
-    content: <div className="archive-entry-content"><Fact label="Experience"><ExperienceRecords /></Fact><Fact label="Practice"><p><strong>墨斗云</strong></p><p>AI 辅助建筑资产生成、多模态数据处理与 B2B 产品工作流。</p><p>AI-powered BIM data production platform</p></Fact></div>,
+    content: <div className="archive-entry-content"><Fact label="Experience"><ExperienceRecords /></Fact><Fact label="Practice"><article><p><strong><a className="archive-work-link" href="https://safety.yun" target="_blank" rel="noreferrer">安全词元平台 / Secure Token ↗</a></strong></p><p>面向企业与开发者的多模型 Token API 平台，围绕模型接入、调用治理、安全策略与商业化分销建立产品能力。</p><p>参与用户与竞品研究、MVP 策略梳理、Base Test Set 验证流程、B2B SaaS 分销机制及产品合规支持。</p></article><article><p><strong>墨斗云</strong></p><p>面向建筑三维 AI 模型训练的数据生产工具与工程数据平台，融合 CAD、BIM 与点云等多源数据。</p><p>参与 AI 辅助建筑资产生成、多模态数据处理与 B2B 产品工作流设计。</p></article></Fact></div>,
   },
   sources: {
     eyebrow: 'CHAPTER 03 / RESEARCH & REFERENCES', title: 'RESEARCH & REFERENCES',

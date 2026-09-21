@@ -4,10 +4,9 @@ const base = '/assets/dianma/';
 
 export default function DianmaChengjinPage() {
   return <WorkDocument category="AI PRODUCT / SKILL DESIGN" title="点马成金" subtitle="AI 能力识别与转行规划系统"
-    description={<><p>面向准备转向交互设计、产品体验与服务设计的设计学生，将课程、竞赛与实习经历转译为目标岗位能够识别的能力证据。</p><p>系统先判断方向与已有积累，再完成能力识别、缺口诊断、岗位匹配和策略驱动的作品集规划。</p><p className="work-partner">团队项目 / 赛博伯乐 · 李旻哲、肖裕诚、Gilbert Yohanes</p></>}>
+    description={<><p>面向准备转向交互设计、产品体验与服务设计的设计学生，将课程、竞赛与实习经历转译为目标岗位能够识别的能力证据。</p><p>系统先判断方向与已有积累，再完成能力识别、缺口诊断、岗位匹配和策略驱动的作品集规划。</p></>}>
     <WorkSection number="01" title="Overview">
       <p>“点马成金”关注的不是先套用作品集模板，而是先回答三个问题：我有什么、我能投什么、我还缺什么。产品以“牛马进，千里马出”为叙事，把职业转向中的焦虑重新定义为能力识别与表达的问题。</p>
-      <WorkFigure src={base+'overview.webp'} alt="点马成金 AI 能力识别与转行规划系统项目封面" caption="FIG. 01 / 项目概览：点马成金 · Cyber Bó Lè System。" />
     </WorkSection>
     <WorkSection number="02" title="User Insight">
       <p>目标用户往往已经拥有环境、建筑、展陈、装置、竞赛或实习经历，但无法判断哪些经验能够被目标岗位识别。研究将问题归纳为方向判断、能力转译和缺口诊断。</p>
@@ -42,7 +41,6 @@ export default function DianmaChengjinPage() {
     <WorkSection number="06" title="Deliverables">
       <p>最终交付覆盖项目卡库、能力脉络、岗位适配策略、缺口诊断、简历方向、专家补作品指导、阶段行动路径与策略驱动的作品集结构。</p>
       <WorkFigure src={base+'deliverables.webp'} alt="点马成金案例输入、系统判断、专家介入与最终交付物" caption="FIG. 07 / 价值与交付：让经历被识别，让投递有方向。" />
-      <p className="work-evidence-note">项目材料确认该项目由赛博伯乐团队共同完成；肖裕诚的具体个人职责待补充。</p>
     </WorkSection>
   </WorkDocument>;
 }
