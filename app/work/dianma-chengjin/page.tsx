@@ -4,7 +4,7 @@ const base = '/assets/dianma/';
 
 export default function DianmaChengjinPage() {
   return <WorkDocument category="AI PRODUCT / AGENT DESIGN" title="点马成金" subtitle="AI 能力识别与转行规划系统"
-    description={<><p>面向准备转向交互设计、产品体验与服务设计的设计学生，将课程、竞赛与实习经历转译为目标岗位能够识别的能力证据。</p><p>系统先判断方向与已有积累，再完成能力识别、缺口诊断、岗位匹配和策略驱动的作品集规划。</p><p className="work-partner">腾讯云 · TT 设计学院 Skill 创新应用大赛 / 第六名</p></>}>
+    description={<><div className="work-award"><span>AWARD / 06</span><strong>腾讯云 · TT 设计学院 Skill 创新应用大赛</strong><small>第六名 / 6TH PLACE</small></div><p>面向准备转向交互设计、产品体验与服务设计的设计学生，将课程、竞赛与实习经历转译为目标岗位能够识别的能力证据。</p><p>系统先判断方向与已有积累，再完成能力识别、缺口诊断、岗位匹配和策略驱动的作品集规划。</p></>}>
     <WorkSection number="01" title="Overview">
       <p>“点马成金”关注的不是先套用作品集模板，而是先回答三个问题：我有什么、我能投什么、我还缺什么。产品以“牛马进，千里马出”为叙事，把职业转向中的焦虑重新定义为能力识别与表达的问题。</p>
     </WorkSection>

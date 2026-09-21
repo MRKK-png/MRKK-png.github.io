@@ -80,9 +80,9 @@ export const archiveEntries: Record<ArchiveEntryId, ArchiveEntry> = {
         </article>
         <article className="archive-project">
           <span>AI PRODUCT / AGENT DESIGN</span><h3><a className="archive-work-link" href="/work/dianma-chengjin?from=room">点马成金 ↗</a></h3>
+          <p className="project-award-summary"><strong>AWARD / 06</strong> 腾讯云 · TT 设计学院 Skill 创新应用大赛</p>
           <p className="project-subtitle">AI 能力识别与转行规划系统</p>
           <p>将个人经历转化为能力识别、岗位匹配、缺口诊断与作品集策略的 Agent 设计。</p>
-          <p className="project-role">腾讯云 · TT 设计学院 Skill 创新应用大赛 / 第六名</p>
         </article>
         <article className="archive-project">
           <span>AI EVALUATION RESEARCH</span><h3><a className="archive-work-link" href="/work/designspec-bench?from=room">DesignSpec-Bench ↗</a></h3>

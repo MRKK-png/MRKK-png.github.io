@@ -55,7 +55,7 @@ function PaperPage({ album, index, activeClip, onPlay, still = false }: {
     {photo ? <figure className="paper-figure">
       {still ? <div className="photo-print"><img src={photo.src} alt="" loading="eager" style={{ objectFit: 'contain' }} draggable={false} /></div> :
         <PhotoPrint key={photo.id} photo={photo} active={activeClip === photo.id} onPlay={() => onPlay(photo.id)} />}
-      <figcaption><span>{album.id === 'autumn-2025' ? 'AUTUMN / 2025' : photo.id.toUpperCase()}</span><span>{String(index + 1).padStart(2, '0')}</span></figcaption>
+      <figcaption><span>{album.id === 'autumn-2025' ? 'BETWEEN WINDOWS / 2025' : photo.id.toUpperCase()}</span><span>{String(index + 1).padStart(2, '0')}</span></figcaption>
     </figure> : <div className="paper-end"><span>END OF ALBUM</span><p>{album.title}</p><small>{album.photos.length} PHOTOGRAPHS</small></div>}
   </div>;
 }
@@ -135,7 +135,7 @@ export function PhotoArchive() {
     <header className="photo-header">
       <a className="photo-return" href="/" onClick={e => {
         if (new URLSearchParams(window.location.search).get('from') === 'room' && window.history.length > 1) { e.preventDefault(); window.history.back(); }
-      }}>← <span>返回档案室</span></a>
+      }}>← <span>BACK TO ARCHIVE</span></a>
       <span className="photo-header-label">PERSONAL ARCHIVE / PHOTOGRAPHY</span>
       <span className="photo-header-count">{album ? `ALBUM ${album.number}` : `${String(photoAlbums.length).padStart(2, '0')} ALBUMS`}</span>
     </header>
@@ -147,7 +147,7 @@ export function PhotoArchive() {
       </button>)}</div>
       <footer className="photo-catalog-footer"><span>XIAO YUCHENG / 肖裕诚</span><span>COLLECTED MOMENTS</span></footer>
     </section> : <section className="album-reader" aria-label={album.title}>
-      <div className="album-toolbar"><button onClick={close}>← 影集目录</button><h1>{album.title}</h1><span>{album.english}</span></div>
+      <div className="album-toolbar"><button onClick={close}>← ALBUM INDEX</button><h1>{album.title}</h1><span>{album.english}</span></div>
       <div className="album-stage" onTouchStart={e => { touch.current = { x: e.touches[0].clientX, y: e.touches[0].clientY }; }}
         onTouchEnd={e => { if (!touch.current) return; const dx = e.changedTouches[0].clientX - touch.current.x; const dy = e.changedTouches[0].clientY - touch.current.y; touch.current = null; if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy) * 1.5) flip(dx < 0 ? 1 : -1); }}>
         <div className={`open-album${turn ? ' is-turning' : ''}${mobile ? ' single-page' : ''}`}>
@@ -164,7 +164,6 @@ export function PhotoArchive() {
         </div>
       </div>
       <nav className="album-pagination" aria-label="影集翻页"><button onClick={() => flip(-1)} disabled={index === 0 || !!turn}>← {mobile ? '上一页' : '上一跨页'}</button><span aria-live="polite" aria-atomic="true">{String(index + 1).padStart(2, '0')}{!mobile && index + 1 < album.photos.length ? ` — ${String(index + 2).padStart(2, '0')}` : ''} <i>/ {String(album.photos.length).padStart(2, '0')}</i></span><button onClick={() => flip(1)} disabled={index + step >= album.photos.length || !!turn}>{mobile ? '下一页' : '下一跨页'} →</button></nav>
-      <p className="album-instructions">{mobile ? '左右滑动翻页' : '点击书页外缘或使用 ← → 翻页'}{album.photos.some(p => p.video) ? ' · 点击 LIVE 播放有声动态照片' : ''}</p>
     </section>}
   </main>;
 }

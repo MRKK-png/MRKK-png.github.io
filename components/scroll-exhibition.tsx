@@ -23,6 +23,18 @@ export function ScrollExhibition() {
   const freeExplore = guidedIndex === -1;
 
   useEffect(() => {
+    const resetProjectTransition = (event: PageTransitionEvent) => {
+      setProjectTransition(false);
+      if (!event.persisted) return;
+      gsap.killTweensOf('.near-room');
+      gsap.set('.near-room', { clearProps: 'xPercent,scale' });
+      window.requestAnimationFrame(() => ScrollTrigger.refresh());
+    };
+    window.addEventListener('pageshow', resetProjectTransition);
+    return () => window.removeEventListener('pageshow', resetProjectTransition);
+  }, []);
+
+  useEffect(() => {
     const saved = window.localStorage.getItem('archive-guided-chapters');
     if (!saved) return;
     try {

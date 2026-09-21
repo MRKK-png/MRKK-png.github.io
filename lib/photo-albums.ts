@@ -2,7 +2,7 @@ export type AlbumPhoto = { id: string; src: string; alt: string; video?: string 
 export type PhotoAlbum = { id: string; number: string; title: string; english: string; cover: string; photos: AlbumPhoto[] };
 const asset = '/assets/photo/';
 export const photoAlbums: PhotoAlbum[] = [
-  { id: 'autumn-2025', number: '01', title: '2025 秋季学期总结', english: 'AUTUMN SEMESTER / 2025', cover: asset + 'autumn-01.webp', photos: [
+  { id: 'autumn-2025', number: '01', title: '窗口之间', english: 'BETWEEN WINDOWS / 2025', cover: asset + 'autumn-01.webp', photos: [
     { id: 'autumn-01', alt: '校园庭院与早期电脑播放器窗口的拼贴' },
     { id: 'autumn-02', alt: '展览、画图软件窗口与日常片段的拼贴' },
     { id: 'autumn-03', alt: '工作台、朋友合影与设计片段的拼贴' },
