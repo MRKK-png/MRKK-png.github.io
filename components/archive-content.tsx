@@ -100,9 +100,9 @@ export const archiveEntries: Record<ArchiveEntryId, ArchiveEntry> = {
     subtitle: '观察、收藏与研究 / Observations, collections and research',
     content: (
       <div className="archive-entry-content inspiration-grid">
-        <Fact label="Photography"><a className="archive-project-link" href="/archive/photo?from=room"><span>PHOTO ALBUMS / 摄影影集</span><small>秋季学期 · 格陵兰 · 日常标本</small></a></Fact>
+        <Fact label="Photography"><a className="archive-project-link" href="/archive/photo?from=room"><span>PHOTO ALBUMS</span><small>BETWEEN WINDOWS · GREENLAND · EVERYDAY SPECIMENS</small></a></Fact>
         <Fact label="Moving Image"><a className="archive-project-link" href="/work/x03?from=room"><span>Governed by the Protocol</span><small>Speculative film / 推想影像</small></a></Fact>
-        <Fact label="Field Notes"><a className="archive-project-link" href="/archive/photo?album=everyday-specimens&amp;from=room"><span>日常标本 / Everyday Specimens</span><small>公共空间、展示物与日常观察</small></a></Fact>
+        <Fact label="Field Notes"><a className="archive-project-link" href="/archive/photo?album=everyday-specimens&amp;from=room"><span>EVERYDAY SPECIMENS</span><small>公共空间、展示物与日常观察</small></a></Fact>
         <Fact label="Architecture"><a className="archive-project-link" href="/archive/architecture?from=room"><span>ARCHITECTURE WORKS / 建筑作品</span><small>两项本科设计选录</small></a></Fact>
         <Fact label="Research"><p>[ Add research notes ]</p></Fact>
         <Fact label="Social Design">

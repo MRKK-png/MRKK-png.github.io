@@ -56,7 +56,7 @@ function PaperPage({ album, index, activeClip, onPlay, still = false }: {
       {still ? <div className="photo-print"><img src={photo.src} alt="" loading="eager" style={{ objectFit: 'contain' }} draggable={false} /></div> :
         <PhotoPrint key={photo.id} photo={photo} active={activeClip === photo.id} onPlay={() => onPlay(photo.id)} />}
       <figcaption><span>{album.id === 'autumn-2025' ? 'BETWEEN WINDOWS / 2025' : photo.id.toUpperCase()}</span><span>{String(index + 1).padStart(2, '0')}</span></figcaption>
-    </figure> : <div className="paper-end"><span>END OF ALBUM</span><p>{album.title}</p><small>{album.photos.length} PHOTOGRAPHS</small></div>}
+    </figure> : <div className="paper-end"><span>END OF ALBUM</span><p>{album.english}</p><small>{album.photos.length} PHOTOGRAPHS</small></div>}
   </div>;
 }
 
@@ -141,13 +141,13 @@ export function PhotoArchive() {
     </header>
     {!album ? <section className="photo-catalog" aria-labelledby="photo-title">
       <div className="photo-catalog-heading"><div><p>CHAPTER 03 / VISUAL RECORDS</p><h1 id="photo-title">PHOTO<br /><span>ALBUMS</span><sup>〔{String(photoAlbums.length).padStart(2, '0')}〕</sup></h1></div><p className="photo-catalog-caption">摄影与片段<br />PHOTOGRAPHS & FRAGMENTS</p></div>
-      <div className="album-shelf">{photoAlbums.map(item => <button id={`cover-${item.id}`} className={`album-cover album-cover-${item.id}`} key={item.id} aria-label={`打开${item.title}影集`} onClick={() => open(item)}>
-        <div className="cover-object"><div className="cover-running"><span>PERSONAL ARCHIVE</span><span>VOL. {item.number}</span></div><div className="cover-image"><img src={item.cover} alt={item.title} loading="eager" style={{ objectFit: item.id === 'autumn-2025' ? 'contain' : 'cover' }} draggable={false} /></div><div className="cover-title"><span>{item.english}</span><strong>{item.title}</strong></div><div className="cover-bottom"><span>{String(item.photos.length).padStart(2, '0')} PHOTOGRAPHS</span><span>{item.photos.some(p => p.video) ? 'STILL + LIVE' : 'FIELD PHOTOGRAPHY'}</span></div></div>
-        <div className="cover-label"><span>{item.number} / {item.title}</span><span>打开影集 ↗</span></div>
+      <div className="album-shelf">{photoAlbums.map(item => <button id={`cover-${item.id}`} className={`album-cover album-cover-${item.id}`} key={item.id} aria-label={`OPEN ${item.english}`} onClick={() => open(item)}>
+        <div className="cover-object"><div className="cover-running"><span>PERSONAL ARCHIVE</span><span>VOL. {item.number}</span></div><div className="cover-image"><img src={item.cover} alt={item.english} loading="eager" style={{ objectFit: item.id === 'autumn-2025' ? 'contain' : 'cover' }} draggable={false} /></div><div className="cover-title"><strong>{item.english}</strong></div><div className="cover-bottom"><span>{String(item.photos.length).padStart(2, '0')} PHOTOGRAPHS</span><span>{item.photos.some(p => p.video) ? 'STILL + LIVE' : 'FIELD PHOTOGRAPHY'}</span></div></div>
+        <div className="cover-label"><span>{item.number} / {item.english}</span><span>OPEN ALBUM ↗</span></div>
       </button>)}</div>
       <footer className="photo-catalog-footer"><span>XIAO YUCHENG / 肖裕诚</span><span>COLLECTED MOMENTS</span></footer>
-    </section> : <section className="album-reader" aria-label={album.title}>
-      <div className="album-toolbar"><button onClick={close}>← ALBUM INDEX</button><h1>{album.title}</h1><span>{album.english}</span></div>
+    </section> : <section className="album-reader" aria-label={album.english}>
+      <div className="album-toolbar"><button onClick={close}>← ALBUM INDEX</button><h1>{album.english}</h1><span>VOL. {album.number}</span></div>
       <div className="album-stage" onTouchStart={e => { touch.current = { x: e.touches[0].clientX, y: e.touches[0].clientY }; }}
         onTouchEnd={e => { if (!touch.current) return; const dx = e.changedTouches[0].clientX - touch.current.x; const dy = e.changedTouches[0].clientY - touch.current.y; touch.current = null; if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy) * 1.5) flip(dx < 0 ? 1 : -1); }}>
         <div className={`open-album${turn ? ' is-turning' : ''}${mobile ? ' single-page' : ''}`}>
