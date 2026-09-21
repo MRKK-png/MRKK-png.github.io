@@ -1,5 +1,7 @@
 import { WorkDocument, WorkFigure, WorkSection } from '@/components/work-document';
 
+export const dynamic = 'force-static';
+
 const base = '/assets/designspec-bench/';
 
 const conflicts = [

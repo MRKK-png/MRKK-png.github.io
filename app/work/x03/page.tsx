@@ -1,6 +1,7 @@
 /* oxlint-disable jsx-a11y/media-has-caption -- Supplied film has no subtitle file; narrative is documented below. */
 import { WorkDocument, WorkFigure, WorkSection } from '@/components/work-document';
 import { AiFilmWorkflow } from '@/components/ai-film-workflow';
+export const dynamic = 'force-static';
 const base = '/assets/x03/';
 const beats = [
   ['01', 'EVERYDAY ILLUSION', '日常依赖', '从创业者、产品经理、学生与作家的日常使用建立未来设定。'],

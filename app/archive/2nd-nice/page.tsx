@@ -1,6 +1,8 @@
 /* oxlint-disable next/no-img-element -- Project photographs are pre-sized archive assets. */
 import { ArchiveReturn } from '@/components/archive-return';
 
+export const dynamic = 'force-static';
+
 const base = '/images/2nd-nice';
 
 export default function SecondNiceArchivePage() {
