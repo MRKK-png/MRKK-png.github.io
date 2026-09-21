@@ -56,7 +56,7 @@ export const archiveEntries: Record<ArchiveEntryId, ArchiveEntry> = {
             <li>AI Product Design</li><li>Interaction Design</li><li>Human-AI Interaction</li><li>Spatial Design</li>
           </ul>
         </Fact>
-        <button className="archive-download" type="button" disabled>Download CV <span>COMING SOON</span></button>
+        <a className="archive-download" href="/assets/cv/XIAO-YUCHENG-CV.pdf" download>Download CV <span>PDF · 2.7 MB</span></a>
       </div>
     ),
   },
@@ -79,9 +79,10 @@ export const archiveEntries: Record<ArchiveEntryId, ArchiveEntry> = {
           <p className="project-role">ROLE / AI Product Manager Intern</p>
         </article>
         <article className="archive-project">
-          <span>AI PRODUCT / SKILL DESIGN</span><h3><a className="archive-work-link" href="/work/dianma-chengjin?from=room">点马成金 ↗</a></h3>
+          <span>AI PRODUCT / AGENT DESIGN</span><h3><a className="archive-work-link" href="/work/dianma-chengjin?from=room">点马成金 ↗</a></h3>
           <p className="project-subtitle">AI 能力识别与转行规划系统</p>
-          <p>将个人经历转化为能力识别、岗位匹配、缺口诊断与作品集策略的 Skill 设计。</p>
+          <p>将个人经历转化为能力识别、岗位匹配、缺口诊断与作品集策略的 Agent 设计。</p>
+          <p className="project-role">腾讯云 · TT 设计学院 Skill 创新应用大赛 / 第六名</p>
         </article>
         <article className="archive-project">
           <span>AI EVALUATION RESEARCH</span><h3><a className="archive-work-link" href="/work/designspec-bench?from=room">DesignSpec-Bench ↗</a></h3>
@@ -99,10 +100,10 @@ export const archiveEntries: Record<ArchiveEntryId, ArchiveEntry> = {
     subtitle: '观察、收藏与研究 / Observations, collections and research',
     content: (
       <div className="archive-entry-content inspiration-grid">
-        <Fact label="Photography"><a className="archive-project-link" href="/archive/photo?from=room"><span>PHOTO ALBUMS / 摄影影集</span><small>2025 秋季学期总结 · 格陵兰暑期学校</small></a></Fact>
+        <Fact label="Photography"><a className="archive-project-link" href="/archive/photo?from=room"><span>PHOTO ALBUMS / 摄影影集</span><small>秋季学期 · 格陵兰 · 日常标本</small></a></Fact>
         <Fact label="Moving Image"><a className="archive-project-link" href="/work/x03?from=room"><span>Governed by the Protocol</span><small>Speculative film / 推想影像</small></a></Fact>
-        <Fact label="Field Notes"><p>日常观察、旅行记录与视觉研究 / Observations and visual research</p></Fact>
-        <Fact label="Architecture"><p>[ Add architecture works ]</p></Fact>
+        <Fact label="Field Notes"><a className="archive-project-link" href="/archive/photo?album=everyday-specimens&amp;from=room"><span>日常标本 / Everyday Specimens</span><small>公共空间、展示物与日常观察</small></a></Fact>
+        <Fact label="Architecture"><a className="archive-project-link" href="/archive/architecture?from=room"><span>ARCHITECTURE WORKS / 建筑作品</span><small>两项本科设计选录</small></a></Fact>
         <Fact label="Research"><p>[ Add research notes ]</p></Fact>
         <Fact label="Social Design">
           <Link className="archive-project-link" href="/archive/2nd-nice">
@@ -124,7 +125,7 @@ export const archiveEntries: Record<ArchiveEntryId, ArchiveEntry> = {
   sources: {
     eyebrow: 'CHAPTER 03 / RESEARCH & REFERENCES', title: 'RESEARCH & REFERENCES',
     subtitle: '研究兴趣与建筑背景 / Research interests and architecture',
-    content: <div className="archive-entry-content"><Fact label="Research Interests"><ul className="archive-keywords"><li>Human-centered AI</li><li>Spatial Intelligence</li><li>Future Living</li><li>Extreme Environment</li><li>Human flourishing</li></ul></Fact><Fact label="Architecture"><p>广东工业大学 / Guangdong University of Technology</p><p>Architecture · 2020.09–2025.07</p><p>[ 建筑作品待补充 / Architecture works to be added ]</p></Fact><Fact label="References"><p>[ 参考书目与研究笔记待补充 / Reading list and research notes to be added ]</p></Fact></div>,
+    content: <div className="archive-entry-content"><Fact label="Research Interests"><ul className="archive-keywords"><li>Human-centered AI</li><li>Spatial Intelligence</li><li>Future Living</li><li>Extreme Environment</li><li>Human flourishing</li></ul></Fact><Fact label="Architecture"><p>广东工业大学 / Guangdong University of Technology</p><p>Architecture · 2020.09–2025.07</p><a className="archive-project-link" href="/archive/architecture?from=room"><span>本科建筑作品选录 ↗</span><small>公共文化空间与学习环境</small></a></Fact><Fact label="References"><p>[ 参考书目与研究笔记待补充 / Reading list and research notes to be added ]</p></Fact></div>,
   },
   contact: {
     eyebrow: 'CHAPTER 04 / CONNECTION',

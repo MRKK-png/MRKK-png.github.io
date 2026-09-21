@@ -72,6 +72,10 @@ export default function SecondNiceArchivePage() {
               <img src={`${base}/workshop-participation.webp`} width={1400} height={1050} alt="A group presenting a handmade tote bag" loading="lazy" />
               <figcaption>PARTICIPATION RECORD / 成品托特包与参与合影。日期：[ 待补充 ]。</figcaption>
             </figure>
+            <figure className="project-figure">
+              <img src={`${base}/workshop-detail-02.webp`} width={1800} height={1350} alt="Hands arranging a printed tote bag during an upcycling workshop" loading="lazy" />
+              <figcaption>MAKING DETAIL / 旧衣改造过程中对托特包图案与布料结构的现场调整。Canon PowerShot E1，2025.11.22。</figcaption>
+            </figure>
           </div>
         </section>
 

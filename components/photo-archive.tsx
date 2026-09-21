@@ -55,7 +55,7 @@ function PaperPage({ album, index, activeClip, onPlay, still = false }: {
     {photo ? <figure className="paper-figure">
       {still ? <div className="photo-print"><img src={photo.src} alt="" loading="eager" style={{ objectFit: 'contain' }} draggable={false} /></div> :
         <PhotoPrint key={photo.id} photo={photo} active={activeClip === photo.id} onPlay={() => onPlay(photo.id)} />}
-      <figcaption><span>{photo.id.startsWith('IMG') ? photo.id : 'AUTUMN / 2025'}</span><span>{String(index + 1).padStart(2, '0')}</span></figcaption>
+      <figcaption><span>{album.id === 'autumn-2025' ? 'AUTUMN / 2025' : photo.id.toUpperCase()}</span><span>{String(index + 1).padStart(2, '0')}</span></figcaption>
     </figure> : <div className="paper-end"><span>END OF ALBUM</span><p>{album.title}</p><small>{album.photos.length} PHOTOGRAPHS</small></div>}
   </div>;
 }
@@ -74,6 +74,13 @@ export function PhotoArchive() {
   const step = mobile ? 1 : 2;
   const savedIndex = selected ? positions[selected] || 0 : 0;
   const index = mobile ? savedIndex : savedIndex - savedIndex % 2;
+  useEffect(() => {
+    const requested = new URLSearchParams(window.location.search).get('album');
+    const item = photoAlbums.find(candidate => candidate.id === requested);
+    if (!item) return;
+    setSelected(item.id);
+    setActiveClip(item.photos[0]?.id || null);
+  }, []);
   useEffect(() => {
     const media = window.matchMedia('(prefers-reduced-motion: reduce)');
     const sync = () => setReduced(media.matches);
@@ -130,12 +137,12 @@ export function PhotoArchive() {
         if (new URLSearchParams(window.location.search).get('from') === 'room' && window.history.length > 1) { e.preventDefault(); window.history.back(); }
       }}>← <span>返回档案室</span></a>
       <span className="photo-header-label">PERSONAL ARCHIVE / PHOTOGRAPHY</span>
-      <span className="photo-header-count">{album ? `ALBUM ${album.number}` : '02 ALBUMS'}</span>
+      <span className="photo-header-count">{album ? `ALBUM ${album.number}` : `${String(photoAlbums.length).padStart(2, '0')} ALBUMS`}</span>
     </header>
     {!album ? <section className="photo-catalog" aria-labelledby="photo-title">
-      <div className="photo-catalog-heading"><div><p>CHAPTER 03 / VISUAL RECORDS</p><h1 id="photo-title">PHOTO<br /><span>ALBUMS</span><sup>〔02〕</sup></h1></div><p className="photo-catalog-caption">摄影与片段<br />PHOTOGRAPHS & FRAGMENTS</p></div>
+      <div className="photo-catalog-heading"><div><p>CHAPTER 03 / VISUAL RECORDS</p><h1 id="photo-title">PHOTO<br /><span>ALBUMS</span><sup>〔{String(photoAlbums.length).padStart(2, '0')}〕</sup></h1></div><p className="photo-catalog-caption">摄影与片段<br />PHOTOGRAPHS & FRAGMENTS</p></div>
       <div className="album-shelf">{photoAlbums.map(item => <button id={`cover-${item.id}`} className={`album-cover album-cover-${item.id}`} key={item.id} aria-label={`打开${item.title}影集`} onClick={() => open(item)}>
-        <div className="cover-object"><div className="cover-running"><span>PERSONAL ARCHIVE</span><span>VOL. {item.number}</span></div><div className="cover-image"><img src={item.cover} alt={item.title} loading="eager" style={{ objectFit: item.id === 'greenland' ? 'cover' : 'contain' }} draggable={false} /></div><div className="cover-title"><span>{item.english}</span><strong>{item.title}</strong></div><div className="cover-bottom"><span>{String(item.photos.length).padStart(2, '0')} PHOTOGRAPHS</span><span>{item.photos.some(p => p.video) ? 'STILL + LIVE' : 'FIELD PHOTOGRAPHY'}</span></div></div>
+        <div className="cover-object"><div className="cover-running"><span>PERSONAL ARCHIVE</span><span>VOL. {item.number}</span></div><div className="cover-image"><img src={item.cover} alt={item.title} loading="eager" style={{ objectFit: item.id === 'autumn-2025' ? 'contain' : 'cover' }} draggable={false} /></div><div className="cover-title"><span>{item.english}</span><strong>{item.title}</strong></div><div className="cover-bottom"><span>{String(item.photos.length).padStart(2, '0')} PHOTOGRAPHS</span><span>{item.photos.some(p => p.video) ? 'STILL + LIVE' : 'FIELD PHOTOGRAPHY'}</span></div></div>
         <div className="cover-label"><span>{item.number} / {item.title}</span><span>打开影集 ↗</span></div>
       </button>)}</div>
       <footer className="photo-catalog-footer"><span>XIAO YUCHENG / 肖裕诚</span><span>COLLECTED MOMENTS</span></footer>

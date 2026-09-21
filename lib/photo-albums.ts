@@ -22,4 +22,14 @@ export const photoAlbums: PhotoAlbum[] = [
     { id: 'IMG_5149', alt: '黄色建筑边缘与岩石上的人物' },
     { id: 'IMG_5598', alt: '山谷草地与远山' },
   ].map(p => ({ ...p, src: asset + p.id + '.webp' })) },
+  { id: 'everyday-specimens', number: '03', title: '日常标本', english: 'EVERYDAY SPECIMENS / 2025–2026', cover: asset + 'hk-06.webp', photos: [
+    { id: 'hk-01', alt: '彩色游乐场边的儿童与沙地' },
+    { id: 'hk-02', alt: '玻璃天棚下的城市公共空间' },
+    { id: 'hk-03', alt: '手中展开的彩色印刷物与街道背景' },
+    { id: 'hk-04', alt: '室内陈列中的民俗狮头与织物' },
+    { id: 'hk-05', alt: '彩色民俗物件的局部记录' },
+    { id: 'hk-06', alt: '展柜中的深红色传统服装' },
+    { id: 'hk-07', alt: '并置陈列的传统服装与织物细节' },
+    { id: 'hk-08', alt: '被建筑围合的城市庭院与行人' },
+  ].map(p => ({ ...p, src: asset + p.id + '.webp' })) },
 ];
