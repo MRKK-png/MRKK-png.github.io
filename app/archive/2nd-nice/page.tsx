@@ -11,7 +11,7 @@ export default function SecondNiceArchivePage() {
       <header className="project-document-header">
         <ArchiveReturn />
         <p>PERSONAL ARCHIVE / SOCIAL DESIGN / 001</p>
-        <p>DATE / [ TO BE ADDED ]</p>
+        <p>DATE / 2025.09–PRESENT</p>
       </header>
 
       <article className="project-document">
@@ -32,7 +32,7 @@ export default function SecondNiceArchivePage() {
           <div><span>ROLE</span><strong>项目协作者 / Co-worker</strong></div>
           <div><span>FOCUS</span><strong>Social Design · Community · Circular Fashion</strong></div>
           <div><span>LOCATIONS</span><strong>徐汇 · 杨浦 · 静安 / Shanghai</strong></div>
-          <div><span>DATE</span><strong>[ TO BE ADDED ]</strong></div>
+          <div><span>DATE</span><strong>2025.09–至今 / PRESENT</strong></div>
         </section>
 
         <section className="project-section project-context">
@@ -44,7 +44,7 @@ export default function SecondNiceArchivePage() {
           </div>
           <figure className="project-figure poster-figure">
             <img src={`${base}/beizhan-opening.jpg`} width={1279} height={1706} alt="2nd NICE Beizhan community charity shop opening poster" loading="lazy" />
-            <figcaption>FIG. 01 / 静安区北站街道慈善超市开业视觉。海报标注地址为新疆路 485 号。</figcaption>
+            <figcaption>FIG. 01 / 静安区北站街道慈善超市开业视觉。</figcaption>
           </figure>
         </section>
 
@@ -62,21 +62,21 @@ export default function SecondNiceArchivePage() {
             </figure>
             <figure className="project-figure">
               <img src={`${base}/community-look-02.jpg`} width={1350} height={1800} alt="Two community participants presenting garments outside a 2nd NICE location" loading="lazy" />
-              <figcaption>FIG. 03 / 社区参与者与服装的现场记录。具体活动日期：[ 待补充 ]。</figcaption>
+              <figcaption>FIG. 03 / 社区参与者与服装的现场记录。</figcaption>
             </figure>
           </div>
           <div className="project-workshop-records">
             <figure className="project-figure">
               <img src={`${base}/workshop-process.webp`} width={1600} height={1200} alt="Hands arranging and joining reused fabric pieces into a bag during a workshop" loading="lazy" />
-              <figcaption>WORKSHOP RECORD / 工作坊现场：通过材料拼接与手工制作，探索旧衣物的再次使用。日期：[ 待补充 ]。</figcaption>
+              <figcaption>WORKSHOP RECORD / 工作坊现场：通过材料拼接与手工制作，探索旧衣物的再次使用。</figcaption>
             </figure>
             <figure className="project-figure">
-              <img src={`${base}/workshop-participation.webp`} width={1400} height={1050} alt="A group presenting a handmade tote bag" loading="lazy" />
-              <figcaption>PARTICIPATION RECORD / 成品托特包与参与合影。日期：[ 待补充 ]。</figcaption>
+              <img src={`${base}/workshop-participation.webp`} width={1400} height={1050} alt="A group portrait from the clothing upcycling workshop" loading="lazy" />
+              <figcaption>PARTICIPATION RECORD / 服装改造合影。</figcaption>
             </figure>
             <figure className="project-figure">
               <img src={`${base}/workshop-detail-02.webp`} width={1800} height={1350} alt="Hands arranging a printed tote bag during an upcycling workshop" loading="lazy" />
-              <figcaption>MAKING DETAIL / 旧衣改造过程中对托特包图案与布料结构的现场调整。Canon PowerShot E1，2025.11.22。</figcaption>
+              <figcaption>MAKING DETAIL / 旧衣改造过程中对图案与布料结构的现场调整。</figcaption>
             </figure>
           </div>
         </section>
@@ -89,7 +89,7 @@ export default function SecondNiceArchivePage() {
           </div>
           <figure className="project-figure project-wide-figure">
             <img src={`${base}/community-look-01.jpg`} width={1350} height={1800} alt="A participant documenting a personal outfit outside The Next Life of Things shop" loading="lazy" />
-            <figcaption>FIG. 04 / 门店外的参与者穿搭记录。地点与活动日期：[ 待补充 ]。</figcaption>
+            <figcaption>FIG. 04 / 门店外的参与者穿搭记录。</figcaption>
           </figure>
           <div className="district-index" aria-label="Implementation districts">
             <span>01 / XUHUI</span><span>02 / YANGPU</span><span>03 / JING&apos;AN</span>
@@ -105,11 +105,11 @@ export default function SecondNiceArchivePage() {
           <div className="material-strip">
             <figure className="project-figure">
               <img src={`${base}/material-detail-01.jpg`} width={1350} height={1800} alt="Close detail of patterned second-hand clothing and pearl accessory" loading="lazy" />
-              <figcaption>FIG. 05 / 服装、饰品与旧物标签的细节记录。Canon PowerShot E1，2025.11.23。</figcaption>
+              <figcaption>FIG. 05 / 服装、饰品与旧物标签的细节记录。</figcaption>
             </figure>
             <figure className="project-figure">
               <img src={`${base}/material-detail-02.jpg`} width={1350} height={1800} alt="Close detail of layered yellow, brown and striped textiles" loading="lazy" />
-              <figcaption>FIG. 06 / 多层纺织材料与穿着痕迹。Canon PowerShot E1，2025.11.23。</figcaption>
+              <figcaption>FIG. 06 / 多层纺织材料与穿着痕迹。</figcaption>
             </figure>
           </div>
         </section>

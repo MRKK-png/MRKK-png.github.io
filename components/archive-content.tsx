@@ -23,8 +23,8 @@ function Fact({ label, children }: { label: string; children: ReactNode }) {
 
 function ExperienceRecords() {
   return <>
-    <article><p><strong>上海首序智能科技有限公司</strong></p><p>AI 产品经理实习生 / AI Product Manager Intern</p><p>2026.07–2026.09</p></article>
-    <article><p><strong>北京构力科技有限公司 / PKPM</strong></p><p>AI 产品经理实习生 / AI Product Manager Intern</p><p>2025.12–2026.04</p></article>
+    <article><p className="archive-record-heading"><strong>上海首序智能科技有限公司</strong><span>2026.07–2026.09</span></p><p>AI 产品经理实习生 / AI Product Manager Intern</p></article>
+    <article><p className="archive-record-heading"><strong>北京构力科技有限公司 / PKPM</strong><span>2025.12–2026.04</span></p><p>AI 产品经理实习生 / AI Product Manager Intern</p></article>
   </>;
 }
 
@@ -34,20 +34,21 @@ export const archiveEntries: Record<ArchiveEntryId, ArchiveEntry> = {
     title: 'WHO AM I',
     subtitle: '身份、教育与经历 / Identity, education and experience',
     content: (
-      <div className="archive-entry-content">
+      <div className="archive-entry-content identity-index">
         <Fact label="Identity">
           <p className="archive-person-name">肖裕诚 / XIAO YUCHENG</p>
           <p>Designer · Researcher · Photographer</p>
         </Fact>
         <Fact label="Education">
           <article>
-            <p><strong>同济大学 / Tongji University</strong></p>
-            <p>设计创意学院 / School of Design and Innovation</p>
-            <p>Interaction Design · 2025.09–2028.07</p>
+            <p className="archive-record-heading"><strong>同济大学 / Tongji University</strong><span>2025.09–2028.07</span></p>
+            <p>设计创意学院 / College of Design and Innovation</p>
+            <p>交互设计硕士 / Master&apos;s in Interaction Design</p>
           </article>
           <article>
-            <p><strong>广东工业大学 / Guangdong University of Technology</strong></p>
-            <p>Architecture · 2020.09–2025.07</p>
+            <p className="archive-record-heading"><strong>广东工业大学 / Guangdong University of Technology</strong><span>2020.09–2025.07</span></p>
+            <p>建筑与城市规划学院 / School of Architecture and Urban Planning</p>
+            <p>建筑学学士 / Bachelor of Architecture</p>
           </article>
         </Fact>
         <Fact label="Experience"><ExperienceRecords /></Fact>
@@ -80,7 +81,7 @@ export const archiveEntries: Record<ArchiveEntryId, ArchiveEntry> = {
         </article>
         <article className="archive-project">
           <span>AI PRODUCT / AGENT DESIGN</span><h3><a className="archive-work-link" href="/work/dianma-chengjin?from=room">点马成金 ↗</a></h3>
-          <p className="project-award-summary"><strong>AWARD / 06</strong> 腾讯云 · TT 设计学院 Skill 创新应用大赛</p>
+          <p className="project-award-summary">腾讯云 · TT 设计学院 Skill 创新应用大赛 · 第六名 / Ranked 6th</p>
           <p className="project-subtitle">AI 能力识别与转行规划系统</p>
           <p>将个人经历转化为能力识别、岗位匹配、缺口诊断与作品集策略的 Agent 设计。</p>
         </article>
@@ -89,6 +90,11 @@ export const archiveEntries: Record<ArchiveEntryId, ArchiveEntry> = {
           <p className="project-subtitle">Conflict Handling in Multimodal Design Tasks</p>
           <p>评估多模态大模型面对设计文本与视觉规范冲突时的处理行为。</p>
           <ul className="archive-keywords"><li>5 Conflict Types</li><li>C / T / S Coding</li><li>4 MLLMs</li><li>Pilot Benchmark</li></ul>
+        </article>
+        <article className="archive-project">
+          <span>SOCIAL DESIGN</span><h3><a className="archive-work-link" href="/archive/2nd-nice?from=room">2nd NICE 第二好 ↗</a></h3>
+          <p className="project-subtitle">Community-based circular fashion practice</p>
+          <p>通过二手物品循环利用与社区共创，探索可持续生活方式与人与社区之间的新关系。</p>
         </article>
 
       </div>
@@ -120,7 +126,7 @@ export const archiveEntries: Record<ArchiveEntryId, ArchiveEntry> = {
   internship: {
     eyebrow: 'CHAPTER 02 / INTERNSHIP', title: 'PROFESSIONAL EXPERIENCE',
     subtitle: '实习与专业实践 / Internship and professional practice',
-    content: <div className="archive-entry-content"><Fact label="Experience"><ExperienceRecords /></Fact><Fact label="Practice"><article><p><strong><a className="archive-work-link" href="https://safety.yun" target="_blank" rel="noreferrer">安全词元平台 / Secure Token ↗</a></strong></p><p>面向企业与开发者的多模型 Token API 平台，围绕模型接入、调用治理、安全策略与商业化分销建立产品能力。</p><p>参与用户与竞品研究、MVP 策略梳理、Base Test Set 验证流程、B2B SaaS 分销机制及产品合规支持。</p></article><article><p><strong>墨斗云</strong></p><p>面向建筑三维 AI 模型训练的数据生产工具与工程数据平台，融合 CAD、BIM 与点云等多源数据。</p><p>参与 AI 辅助建筑资产生成、多模态数据处理与 B2B 产品工作流设计。</p></article></Fact></div>,
+    content: <div className="archive-entry-content"><Fact label="Experience"><ExperienceRecords /></Fact><Fact label="Practice"><article><p><strong><a className="archive-work-link" href="https://safety.yun" target="_blank" rel="noreferrer">安全词元平台 / SafetyYun ↗</a></strong></p><p>面向企业与开发者的多模型 Token API 平台，围绕模型接入、调用治理、安全策略与商业化分销建立产品能力。</p><p>参与用户与竞品研究、MVP 策略梳理、Base Test Set 验证流程、B2B SaaS 分销机制及产品合规支持。</p></article><article><p><strong>墨斗云</strong></p><p>面向建筑三维 AI 模型训练的数据生产工具与工程数据平台，融合 CAD、BIM 与点云等多源数据。</p><p>参与 AI 辅助建筑资产生成、多模态数据处理与 B2B 产品工作流设计。</p></article></Fact></div>,
   },
   sources: {
     eyebrow: 'CHAPTER 03 / RESEARCH & REFERENCES', title: 'RESEARCH & REFERENCES',

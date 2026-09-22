@@ -14,7 +14,7 @@ const conflicts = [
 
 export default function DesignSpecBenchPage() {
   return <WorkDocument category="AI EVALUATION RESEARCH" title="DesignSpec-Bench" subtitle="Conflict Handling in Multimodal Design Tasks"
-    description={<><p>评估多模态大模型在设计文本与视觉规范发生冲突时，是否会主动澄清、透明说明假设，或直接静默执行。</p><p>独立研究项目 / Independent research project · Tongji University · College of Design and Innovation · 2026</p><p><a className="work-external-link" href="https://github.com/MRKK-png/designspec-bench" target="_blank" rel="noreferrer">VIEW REPOSITORY ↗</a></p></>}>
+    description={<><p>评估多模态大模型在设计文本与视觉规范发生冲突时，是否会主动澄清、透明说明假设，或直接静默执行。</p><p className="work-meta-line">独立研究项目 / Independent research project · Tongji University · College of Design and Innovation · 2026</p><p><a className="work-external-link" href="https://github.com/MRKK-png/designspec-bench" target="_blank" rel="noreferrer">VIEW REPOSITORY ↗</a></p></>}>
     <WorkSection number="01" title="Research Question">
       <p>现有模型评测往往关注输出质量，却较少观察模型如何处理互相冲突的设计要求。本项目以文本—图像矛盾为切入点，研究模型的冲突识别、模态偏好与处理质量。</p>
       <div className="work-stat-grid">
@@ -28,9 +28,7 @@ export default function DesignSpecBenchPage() {
     </WorkSection>
     <WorkSection number="03" title="Pilot Findings">
       <p>试点结果显示，静默执行约占全部编码响应的 60%。不同模型的模态偏好与加权冲突处理得分存在明显差异；这些数值用于识别研究现象，不代表已经完成的大规模统计结论。</p>
-      <WorkFigure src={base+'behavior.png'} alt="Behavior distribution across models and conflict types" caption="FIG. 01 / 四个模型在五类冲突中的 C、T、S 行为分布。" />
-      <WorkFigure src={base+'modality-bias.png'} alt="Modality Bias Index across evaluated models" caption="FIG. 02 / 模态偏好指数：不同模型对文本与视觉参考的倾向。" />
-      <div className="work-figure-pair"><WorkFigure src={base+'wchs.png'} alt="Weighted Conflict-Handling Score by model" caption="FIG. 03 / 加权冲突处理得分。" /><WorkFigure src={base+'scatter.png'} alt="Relationship between silent execution and weighted conflict-handling score" caption="FIG. 04 / 静默执行率与冲突处理质量关系。" /></div>
+      <div className="work-figure-pair work-figure-grid"><WorkFigure src={base+'behavior.png'} alt="Behavior distribution across models and conflict types" caption="FIG. 01 / 四个模型在五类冲突中的 C、T、S 行为分布。" /><WorkFigure src={base+'modality-bias.png'} alt="Modality Bias Index across evaluated models" caption="FIG. 02 / 模态偏好指数：不同模型对文本与视觉参考的倾向。" /><WorkFigure src={base+'wchs.png'} alt="Weighted Conflict-Handling Score by model" caption="FIG. 03 / 加权冲突处理得分。" /><WorkFigure src={base+'scatter.png'} alt="Relationship between silent execution and weighted conflict-handling score" caption="FIG. 04 / 静默执行率与冲突处理质量关系。" /></div>
     </WorkSection>
     <WorkSection number="04" title="Case Study / NC-01">
       <p>NC-01 设置了一个规范冲突：春节活动简报要求大面积使用中国红与金色，而同一银行的品牌手册明确禁止红色作为主色。该案例用来比较模型是否主动指出冲突，以及在未澄清时更偏向文字任务还是品牌视觉规范。</p>

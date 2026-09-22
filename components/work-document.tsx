@@ -12,7 +12,7 @@ export function WorkDocument({ category, title, subtitle, description, children,
     <article className="work-document">
       <header className="work-document-hero">
         <p className="project-kicker">{section === 'ARCHIVE' ? 'CHAPTER 03' : section} / {category}</p>
-        <h1 className={title.length > 20 ? 'work-title-long' : undefined}>{title}</h1><p className="work-subtitle">{subtitle}</p>
+        <h1 className={section === 'ARCHIVE' && title.length > 20 ? 'work-title-long' : undefined}>{title}</h1><p className="work-subtitle">{subtitle}</p>
         <div className="work-introduction">{description}</div>
       </header>
       {children}
